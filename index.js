@@ -3,6 +3,8 @@ let app = express();
 
 let session = require('express-session');
 let bodyParser = require('body-parser');
+let mongoose = require('mongoose');
+let bcrypt = require('bcrypt-nodejs');
 let uuid = require('uuid/v1');
 
 // middleware
@@ -14,6 +16,34 @@ app.use(bodyParser.json());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 
+// database config
+mongoose.Promise = global.Promise
+mongoose.connect('mongodb://localhost:27017/MusicPlayer', {
+      useNewUrlParser: true
+   },
+   function(error) {
+      if (error) {
+         return console.error('Unable to connect:', error);
+      }
+   });
+//, {useMongoClient: true});
+mongoose.set('useCreateIndex', true);
+
+
+// database schemas
+let Schema = mongoose.Schema;
+let userSchema = new Schema({
+   username: {
+      type: String,
+      unique: true,
+      index: true
+   },
+   hashedPassword: String
+}, {
+   collection: 'users'
+});
+let User = mongoose.model('user', userSchema);
+
 // session tracking
 app.use(session({
     genid: (request) => { return uuid(); },
@@ -22,16 +52,6 @@ app.use(session({
     // cookie: { secure: true},
     secret: 'apollo slackware prepositional expectations',
 }));
-
-var usernames = ['admin'];
-function usernameExists(toFind) {
-    for (let i = 0; i < usernames.length; i++) {
-        if (usernames[i] === toFind) {
-            return true;
-        }
-    }
-    return false;
-}
 
 app.get('/', (request, response) => {
     console.log('/ handler');
@@ -47,18 +67,6 @@ app.get('/', (request, response) => {
     });
 });
 
-app.get('/students', (request, response) => {
-    let studentList = [
-        { sid: '100200300', firstName: 'Bender', lastName: 'Rodriguez' },
-        { sid: '100200301', firstName: 'Philip', lastName: 'Fry' },
-        { sid: '100200302', firstName: 'Taranga', lastName: 'Leela' },
-    ];
-    response.render('students', {
-        title: 'Student List',
-        students: studentList,
-    });
-});
-
 app.get('/login', (request, response) => {
     response.render('login', {
         title: 'Please Sign In',
@@ -69,20 +77,38 @@ app.post('/processLogin', (request, response) => {
     let username = request.body.username;
     let password = request.body.password;
 
-    if (usernameExists(username)) {
-        // TODO: CHECK PASSWORD
-        request.session.username = username;
-        response.render('login_success', {
-            username: username,
-            title: 'Login Success',
-        });
-    } else {
-        // login failed
+    User.find({username: username}).then(function(results) {
+        if (results.length != 1) {
+           console.log('login: no user found');
+           // error logging in - no such user
+           response.render('login', {
+              errorMessage: 'Login Incorrect'
+           });
+        } else {
+           // user was found, now check the password
+           console.log('login password:', bcrypt.hashSync(password));
+           if (bcrypt.compareSync(password, results[0].hashedPassword)) {
+              // password match - successful login
+              request.session.username = username;
+              response.render('loginSuccess', {
+                 username: username,
+                 title: 'Login Success'
+              });
+           } else {
+              console.log('login: password is not a match');
+              // error logging in - invalid password
+              response.render('login', {
+                 errorMessage: 'Login Incorrect'
+              });
+           }
+        }
+     }).catch(function(error) {
+        // error logging in - no such user
+        console.log('login: catch');
         response.render('login', {
-            title: 'Please Log In',
-            errorMessage: 'Login Incorrect',
+           errorMessage: 'Login Incorrect'
         });
-    }
+     });
 });
 
 app.get('/register', function (request, response) {
@@ -90,24 +116,43 @@ app.get('/register', function (request, response) {
 });
 
 app.post('/processRegistration', function (request, response) {
-    let username = request.body.username;
-    let password = request.body.pwd;
+    username = request.body.username;
+    password = request.body.password;
+    
+    // Check if user is already registered
+    User.find({username: username}).then(function(results) {
+        // Proceed registering the user
+        if (results.length != 1) {
+            hashedPassword = bcrypt.hashSync(password);
+            console.log('register password:', hashedPassword);
 
-    if (usernameExists(username)) {
-        response.render('registration', {
-            title: 'Register',
-            errorMessage: 'Username in use'
-        });
-    } else {
-        usernames.push(username);
+            newUser = new User({
+                username: username,
+                hashedPassword: hashedPassword
+            });
 
-        request.session.username = username;
+            newUser.save(function(error) {
+                if (error) {
+                    response.render('registration',
+                                    {errorMessage: 'Invalid registration data'});
+                } else {
+                    request.session.username = username; // logged in
+                    response.render('registerConfirm', {
+                    username: username,
+                    title: 'Welcome aboard!'
+                    });
+                }
+            });
+         } else {
+            // User is already registered
+            console.log('registration: user is already registered');
+            response.render('registration', {
+               errorMessage: 'You are already registered. Please login.'
+            });
+        }
+    });
 
-        response.render('registration_success', {
-            username: username,
-            title: 'Welcome aboard!'
-        });
-    }
+    
 });
 
 app.get('/logout', function (request, response) {

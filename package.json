@@ -11,6 +11,9 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "mongoose": "^5.9.6",
+    "body-parser": "^1.15.2",
+    "bcrypt-nodejs": "0.0.3",
     "pug": "^2.0.4",
     "uuid": "^7.0.2"
   }
