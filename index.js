@@ -1,3 +1,6 @@
+require("./models/user");
+require("./models/song");
+
 let express = require('express');
 let app = express();
 
@@ -31,18 +34,13 @@ mongoose.set('useCreateIndex', true);
 
 
 // database schemas
-let Schema = mongoose.Schema;
-let userSchema = new Schema({
-   username: {
-      type: String,
-      unique: true,
-      index: true
-   },
-   hashedPassword: String
-}, {
-   collection: 'users'
-});
+var songSchema = require('mongoose').model('Song').schema
+var userSchema = require('mongoose').model('User').schema
+
+// Models
 let User = mongoose.model('user', userSchema);
+let Song = mongoose.model('song', songSchema);
+
 
 // session tracking
 app.use(session({
