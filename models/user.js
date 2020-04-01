@@ -1,3 +1,5 @@
+require("./song");
+var SongSchema = require('mongoose').model('Song').schema
 var mongoose = require('mongoose')
 , Schema = mongoose.Schema
 
@@ -7,7 +9,10 @@ let userSchema = new Schema({
       unique: true,
       index: true
    },
-   hashedPassword: String
+   hashedPassword: String,
+   isPremium: Boolean,
+   songs: [SongSchema]
+
 }, {
    collection: 'users'
 });
