@@ -6,15 +6,15 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-        <script type="text/javascript" src="\scripts\Final_Project.js"></script>
+        <script type="text/javascript" src="scripts/Final_Project.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </header>
     <body>
-        <div id="top-bar">
+        <div id="top-bar" class="container is-fluid">
             <div id="left-navigation">
                 <nav class="navbar">
                     <div class="navbar-brand">
-                        <img class="is-rounded" src="images/music_note_002.jpg" width="50" height="50">
+                        <img class="is-rounded" src="images/music_note_002.jpg" width="45" height="40">
                     </div>
                     <div class="navbar-start">
                         <div class="navbar-item has-dropdown is-hoverable">
@@ -45,10 +45,22 @@
                 </nav>
             </div>
             <div id="center-search">
-                
+                <div id="searchBar">
+                    <input class="input" type="text" placeholder="Search" style="width: 60%;">
+                    <span class="icon is-left">
+                        <i class="fa fa-search" style="font-size:30px;"></i>
+                    </span>
+                </div>
             </div>
             <div id="right-account">
-
+                <div id="sign-in" style="text-align: right;">
+                    <button id="sign-in-button" class="button is-info is-rounded">
+                        <p id="sign-in-text"></p>
+                    </button>
+                    <a id="account-link" class="link">
+                        <i class="fa fa-user-circle" style="font-size: 40px; color: black;"></i>
+                    </a>
+                </div>
             </div>
         </div>
         <div id="centerArea">

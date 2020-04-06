@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    align-items: center;
+    
+}
+#centerArea {
+    border-top:3px black;
+}
+
+#left-navigation{
+    justify-content: left;
+    width: 33%;
+}
+
+#center-search {
+    text-align: center;
+    width: 33%;
+}
+
+#right-account{
+    
+    width: 33%;
+}
+
+#sign-in-button {
+    width: 100px; 
+    
+}
+.link {
+    text-decoration: none;
+    background-color: transparent;
+}
