@@ -10,7 +10,7 @@ let userSchema = new Schema({
       index: true
    },
    hashedPassword: String,
-   isPremium: Boolean,
+   isPremium: { type: Boolean, default: false },
    songs: [SongSchema]
 
 }, {

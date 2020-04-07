@@ -1,5 +1,7 @@
 require("./models/user");
 require("./models/song");
+require("./models/album");
+require("./models/artist");
 
 let express = require('express');
 let app = express();
@@ -34,12 +36,16 @@ mongoose.set('useCreateIndex', true);
 
 
 // database schemas
-var songSchema = require('mongoose').model('Song').schema
 var userSchema = require('mongoose').model('User').schema
+var songSchema = require('mongoose').model('Song').schema
+var albumSchema = require('mongoose').model('Album').schema
+var artistSchema = require('mongoose').model('Artist').schema
 
 // Models
 let User = mongoose.model('user', userSchema);
 let Song = mongoose.model('song', songSchema);
+let Album = mongoose.model('album', albumSchema);
+let Artist = mongoose.model('artist', artistSchema);
 
 
 // session tracking
