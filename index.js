@@ -12,10 +12,23 @@ let mongoose = require('mongoose');
 let bcrypt = require('bcrypt-nodejs');
 let uuid = require('uuid/v1');
 
+cors = require('cors');
+app.use(cors());
+
+var album_routes = require('./routes/album');
+var artist_routes = require('./routes/artist');
+var song_routes = require('./routes/song');
+
+
 // middleware
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use('/api', album_routes);
+app.use('/api', artist_routes);
+app.use('/api', song_routes);
+
 
 // configure out view/templating engine
 app.set('views', __dirname + '/views');
@@ -37,15 +50,9 @@ mongoose.set('useCreateIndex', true);
 
 // database schemas
 var userSchema = require('mongoose').model('User').schema
-var songSchema = require('mongoose').model('Song').schema
-var albumSchema = require('mongoose').model('Album').schema
-var artistSchema = require('mongoose').model('Artist').schema
 
 // Models
-let User = mongoose.model('user', userSchema);
-let Song = mongoose.model('song', songSchema);
-let Album = mongoose.model('album', albumSchema);
-let Artist = mongoose.model('artist', artistSchema);
+let User = mongoose.model('User', userSchema);
 
 
 // session tracking
