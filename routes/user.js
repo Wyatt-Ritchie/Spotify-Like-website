@@ -1,7 +1,10 @@
 var express = require('express');
-var UserController = require('../controllers/song');
+var UserController = require('../controllers/user');
 var api = express.Router();
 
-// TO DO
+api.post('/processRegistration:username?:password?', UserController.processRegistration);
+api.post('/login:username?:password?', UserController.processLogin);
+api.post('/logout', UserController.logout);
+
 
 module.exports = api;
