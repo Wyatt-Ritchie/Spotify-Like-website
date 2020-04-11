@@ -30,3 +30,9 @@
     text-decoration: none;
     background-color: transparent;
 }
+
+#premiumButtons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
