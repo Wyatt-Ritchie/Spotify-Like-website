@@ -75,7 +75,7 @@
                         <div class="tile is-3 is-vertical" style="background-color: rgb(20, 113, 220);">
                             <p class="subtitle">artist</p>
                             <p class="subtitle">song</p>
-                            <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                            <img src="images/albums/7EP.png" style="width:100px;height:100px;">
                         </div>
                         <div class="tile is-1">
                             <p>inner tile 2</p>
@@ -95,41 +95,81 @@
                     <div class="tile is-1">
                         <p>inner tile 2</p>
                     </div> 
+                   </div>
                 </div>
-                </div>
-              </div>
-              <div class="tile is-4 is-vertical">
-                <div class="tile is-parent is-vertical" style="background-color: rgb(119, 126, 107);">
-                    <p class="title" id="recommended-title"> New Section (Really just arbitrary)</p>
-                    <div class="tile is-parent">
-                        <div class="tile is-3 is-vertical" style="background-color: rgb(20, 113, 220);">
-                            <p class="subtitle">artist</p>
-                            <p class="subtitle">song</p>
-                            <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+            </div>
+                <div class="tile is-4 is-vertical">
+                    <div class="tile is-parent is-vertical" style="background-color: rgb(119, 126, 107);">
+                        <p class="title" id="recommended-title"> New Section (Really just arbitrary)</p>
+                        <div class="tile is-parent">
+                            <div class="tile is-3 is-vertical" style="background-color: rgb(20, 113, 220);">
+                                <p class="subtitle">artist</p>
+                                <p class="subtitle">song</p>
+                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                            </div>
+                            <div class="tile is-1">
+                                <p>inner tile 2</p>
+                            </div> 
                         </div>
-                        <div class="tile is-1">
-                            <p>inner tile 2</p>
-                        </div> 
+                    <!-- Top tile -->
                     </div>
-                  <!-- Top tile -->
+                    <div class="tile is-parent is-vertical" style="background-color: rgb(214, 147, 59);">
+                        <!-- Bottom tile -->
+                        <p class="title" id="side-bar-title"> This is the side bar. I hope the text wraps. It does</p>
+                        <div class="tile is-parent">
+                            <div class="tile is-3 is-vertical" style="background-color: rgb(20, 113, 220);">
+                                <p class="subtitle">artist</p>
+                                <p class="subtitle">song</p>
+                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                            </div>
+                            <div class="tile is-1">
+                                <p>inner tile 2</p>
+                            </div> 
+                        </div>
+                    
+                    </div>
                 </div>
-                <div class="tile" style="background-color: rgb(214, 147, 59);">
-                  <!-- Bottom tile -->
-                  
-                </div>
-              </div>
-              <div class="tile is-vertical" id="about-bar">
-                <div class="tile" style="background-color: rgb(47, 107, 89);">
-                  <!-- Top tile -->
-                  <figure class="image is-4by3">
-                    <img src="https://bulma.io/images/placeholders/640x480.png">
-                  </figure>
-                </div>
+                <div class="tile is-vertical" id="about-bar">
+                    <div class="tile is-vertical" style="background-color: rgb(47, 107, 89);">
+                        <p class="title" id="artist-name">Artist</p>
+                        <p class="subtitle" id="song-name">Song</p>
+                        <img id="info-bar-image" src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:300px;height:300px;">
+                    </div>
                 </div>
               </div>
             </div>
         </div>
         <div id="MusicPlayFooter">
+            <footer class="Mfooter">
+                <div class="play-left">
+                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:50px;height:50px;">
+                    <p>Album name<br/>Artist</p>
+                </div>
+                <div class="play-center">
+                    <p>Song Name</p>
+                    <div class="button-bar">
+                        <button class="play-button" id="favourite" style="width: 30px;">
+                            <i class="fa fa-star-half" id="star"></i>
+                        </button>
+                        <button class="play-button" id="last">
+                            <i class="fa fa-step-backward fa-2x"></i>
+                        </button>
+                        <button class="play-button" id="play">
+                            <i class="fa fa-play-circle fa-3x" id="pauseAndPlay"></i>
+                        </button>
+                        <button class="play-button" id="next">
+                            <i class="fa fa-step-forward fa-2x"></i>
+                        </button>
+                        <button class="play-button" id="stop">
+                            <i class="fa fa-stop"></i>
+                        </button>
+                    </div>
+                    <progress class="progress is-small is-primary" value="15" max="100"></progress>
+                </div>
+                <div class="play-right">
+                    <i class="fa fa-volume-up fa-2x" id="volume"></i>
+                </div>
+            </footer>
 
         </div>
         <div class="modal" id="premiumModal">
