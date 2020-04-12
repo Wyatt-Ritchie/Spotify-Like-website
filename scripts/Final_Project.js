@@ -21,4 +21,8 @@ $(document).ready(function(){
             $("#sign-in-text").html("Sign Out");
         }    
     }
+
+    let mongoose = require('mongoose');
+    
+
 });

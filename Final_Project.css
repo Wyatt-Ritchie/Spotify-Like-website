@@ -4,7 +4,7 @@
     
 }
 #centerArea {
-    border-top:3px black;
+    border:3px black;
 }
 
 #left-navigation{
@@ -29,4 +29,16 @@
 .link {
     text-decoration: none;
     background-color: transparent;
+}
+#about-bar{
+    visibility: hidden;
+}
+#side-bar{
+    background-color: aquamarine;
+}
+.tile{
+    border: 5px black;
+}
+.subtitle{
+    margin-bottom: 12;
 }
