@@ -7,7 +7,7 @@ $(document).ready(function(){
     let hidden = true;
     updateSignInButton();
 
-    //$('#about-bar').hide();
+    $('#about-bar').hide();
 
     $('#sign-in-button').click(function(){
         if(signedIn == false){
