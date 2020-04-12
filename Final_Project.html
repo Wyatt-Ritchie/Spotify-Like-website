@@ -81,7 +81,7 @@
         <div class="modal-card">
             <header class="modal-card-head">
                 <p class="modal-card-title">Go Premium</p>
-                <button class="delete" aria-label="close" onclick></button>
+                <button class="delete" aria-label="close" onclick="$('#premiumModal').hide()"></button>
             </header>
             <section class="modal-card-body">
                 <p>Tired of only having a limited selection of songs? Go Premium now and get access to everything!</p>
@@ -89,7 +89,8 @@
             <footer class="modal-card-foot">
                 <div id="premiumButtons">
                     <div id="paypalButton"></div>
-                    <button class="button">Cancel</button>
+                    <button type="button" onclick="$('#premiumModal').hide()">Cancel</button>
+                    
                 </div>
             </footer>
         </div>
@@ -115,7 +116,8 @@
             // This function captures the funds from the transaction.
             return actions.order.capture().then(function (details) {
                 // This function shows a transaction success message to your buyer.
-                alert('Transaction completed by ' + details.payer.name.given_name);
+                alert(details.payer.name.given_name + ', you have successfully purchased Premium!');
+                $('#premiumModal').hide();
             });
         }
     }).render('#paypalButton');
