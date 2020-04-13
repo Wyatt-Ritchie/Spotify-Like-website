@@ -5,9 +5,11 @@ $(document).ready(function(){
     let favoutite = false;
     let mute = false;
     let hidden = true;
+    var albumList = ["7EP.png", "After Hours_The Weekend.jpg", "Hollywood's Bleeding", "Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent", "The Kids Are Coming"];
     updateSignInButton();
-
+    
     $('#about-bar').hide();
+    
 
     $('#sign-in-button').click(function(){
         if(signedIn == false){
@@ -37,8 +39,13 @@ $(document).ready(function(){
     })
 
     $('img').hover(function(){
+        let artistName = $(this).parent().children("#artist").text();
+        let songName = $(this).parent().children("#song").text();
         let imgSrc = $(this).attr('src');
         $('#info-bar-image').attr('src', imgSrc);
+        document.getElementById('artist-name').innerHTML = artistName;
+        document.getElementById('song-name').innerHTML = songName;
+       
         if(hidden == false){
             $('#about-bar').hide();
             hidden = true;
@@ -89,5 +96,66 @@ $(document).ready(function(){
             mute = false;
         }
     }
-    let mongoose = require('mongoose');
+
+    function displayRecommended(recList){
+        // Displays the recommended songs (random)
+        // requires a list of songs of length 4
+        // loops through the list adding each song to the div
+        for(var i=1; i<5; i++){
+            // the artist name
+            $('#rec' + i).children('#artist').html("Lil Nas X");
+            // the song name
+            $('#rec' + i).children('#song').html('Panini');
+            // the album cover art
+            $('#rec' + i).children('img').attr('src', 'images/albums/7EP.png');
+        }
+    }
+
+    function displayNew(newList){
+        // Displays some songs that are new to the platform
+        // requires a list of songs of length 4
+        // loops through the list adding each song to the div
+        for(var i=1; i<5; i++){
+            // the artist name
+            $('#new' + i).children('#artist').html("Lil Nas X");
+            // the song name
+            $('#new' + i).children('#song').html('Panini');
+            // the album cover art
+            $('#new' + i).children('img').attr('src', 'images/albums/7EP.png');
+        }
+    }
+    
+
+    function displayFavourite(favList){
+        // Displays the most played songs by the user in the favourite section
+        // requires a list of songs of length 4
+        // loops through the list adding each song to the div
+        for(var i=1; i<5; i++){
+            // the artist name
+            $('#fav' + i).children('#artist').html("Lil Nas X");
+            // the song name
+            $('#fav' + i).children('#song').html('Panini');
+            // the album cover art
+            $('#fav' + i).children('img').attr('src', 'images/albums/7EP.png');
+        }
+    }
+
+    function displayHot(hotList){
+        // Displays what songs are hot right now
+        // requires a list of songs of length 4
+        // loops through the list adding each song to the div
+        for(var i=1; i<5; i++){
+            // the artist name
+            $('#hot' + i).children('#artist').html("Lil Nas X");
+            // the song name
+            $('#hot' + i).children('#song').html('Panini');
+            // the album cover art
+            $('#hot' + i).children('img').attr('src', 'images/albums/7EP.png');
+        }
+    }
+
+    displayRecommended();
+    displayNew();
+    displayFavourite();
+    displayHot();
 });
