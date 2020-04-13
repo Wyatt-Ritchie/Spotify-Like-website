@@ -1,19 +1,27 @@
+html {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+ }
+ 
+ body {
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
+    background-color: rgb(26, 21, 29);
+ }
 .container{
     display: flex;
     align-items: center;
-    
 }
 
 #top-bar{
-    background-color: rgb(26, 21, 29);
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
 #centerArea {
-    border:2px black solid;
-    background-color: rgb(26, 21, 29);
-    
+    border-top:2px black solid;
 }
 
 #left-navigation{
@@ -49,11 +57,10 @@
 
 .play-left{
     width: 25%;
-    background-color: forestgreen;
 }
 .play-center{
     width: 50%;
-    background-color: chartreuse;
+    
     text-align: center;
     
 }
@@ -61,12 +68,13 @@
     display: flex;
     justify-content: center;
     width: 25%;
-    background-color: gray;
+    
 }
 .Mfooter{
-    background-color: rgb(194, 193, 193);
+    background-color: rgb(104, 45, 63);
     display: flex;
     align-items: center;
+    padding: 10px;
 }
 
 .button-bar{
@@ -76,11 +84,27 @@
 .play-button{
     border:none;
     border-radius: 50%;
-    background-color: rgb(194, 193, 193);
+    background-color: rgb(104, 45, 63);
+    color: white;
+}
+
+.play-bar{
+    display: flex;
+}
+
+#elapsed-time, #total-time{
+    padding-left: 10px;
+    padding-right: 10px;
+    
+}
+#bar{
+    margin-top: 9px;
 }
 
 #MusicPlayFooter{
     position: fixed;
+    border-top: 1px solid pink;
+    
     bottom: 0;
     width: 100%;
 }

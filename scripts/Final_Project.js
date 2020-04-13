@@ -74,7 +74,17 @@ $(document).ready(function(){
         }
         console.log("hovering" + " " + imgSrc);
     });
+    $('.images').parent().click(function(){
+        let imgSrc = $(this).children("img").attr('src');
+        let artistName = $(this).children("#artist").text();
+        let songName = $(this).children("#song").text();
 
+        $('#playing-song').attr('src', imgSrc);
+        document.getElementById('footer-artist-name').innerHTML = artistName;
+        document.getElementById('footer-song-name').innerHTML = songName;
+        document.getElementById('play-bar-song-name').innerHTML = songName;
+
+    });
     function updateSignInButton(){
         if(signedIn == false){
             $('#sign-in-text').html('Sign In');
@@ -85,11 +95,11 @@ $(document).ready(function(){
 
     function updatePlayButton(){
         if(play == false){
-            $('#pauseAndPlay').removeClass('fa fa-play-circle fa-3x');
+            $('#pauseAndPlay').removeClass('fa fa-play-circle-o fa-3x');
             $('#pauseAndPlay').addClass('fa fa-pause-circle fa-3x');
         }else{
             $('#pauseAndPlay').removeClass('fa fa-pause-circle fa-3x');
-            $("#pauseAndPlay").addClass("fa fa-play-circle fa-3x");
+            $("#pauseAndPlay").addClass("fa fa-play-circle-o fa-3x");
         } 
     }
 
