@@ -5,10 +5,14 @@ $(document).ready(function(){
     let favoutite = false;
     let mute = false;
     let hidden = true;
+    let leftHidden = true;
     var albumList = ["7EP.png", "After Hours_The Weekend.jpg", "Hollywood's Bleeding", "Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent", "The Kids Are Coming"];
     updateSignInButton();
     
     $('#about-bar').hide();
+    $('#side-bar').hide();
+    $('.fa-play-circle').hide();
+
 
     $('#sign-in-button').click(function(){
         if(signedIn == false){
@@ -37,7 +41,17 @@ $(document).ready(function(){
         updateVolumeButton();
     })
 
-    $('img').parent().hover(function(){
+    $('#side-menu-button').click(function(){
+        if(leftHidden == false){
+            $('#side-bar').hide();
+            leftHidden = true;
+        }else{
+            $('#side-bar').show();
+            leftHidden = false;
+        }
+    })
+
+    $('.images').parent().hover(function(){
         let artistName = $(this).children("#artist").text();
         let songName = $(this).children("#song").text();
         let imgSrc = $(this).children("img").attr('src');
@@ -48,12 +62,14 @@ $(document).ready(function(){
        
         if(hidden == false){
             $('#about-bar').hide();
+            $(this).children('.fa-play-circle').hide();
             $(this).attr('style', 'background-color: rgb(26, 21, 29);  border: 1px solid  rgb(26, 21, 29);')
 
             hidden = true;
         }else{
             $('#about-bar').show();
-            $(this).attr('style', 'background-color: rgb(67, 53, 75); border: 1px solid pink;')
+            $(this).children('.fa-play-circle').show();
+            $(this).attr('style', 'background-color: rgb(104, 45, 63); border: 1px solid pink;')
             hidden = false;
         }
         console.log("hovering" + " " + imgSrc);

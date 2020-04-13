@@ -12,37 +12,9 @@
     <body>
         <div id="top-bar" class="container is-fluid">
             <div id="left-navigation">
-                <nav class="navbar">
-                    <div class="navbar-brand">
-                        <img class="is-rounded" src="images/music_note_002.jpg" width="45" height="40">
-                    </div>
-                    <div class="navbar-start">
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link">
-                                <i class="fa fa-bars" style ="font-size: 25px;"></i>
-                            </a>
-                            <div class="navbar-dropdown">
-                                <a class="navbar-item">
-                                    <i class=" fa fa-home" style="padding-right: 10px;"></i>
-                                    Home
-                                </a>
-                                <a class="navbar-item">
-                                    <i class="fa fa-leaf" style="padding-right: 10px;"></i>
-                                    Genres
-                                </a>
-                                <a class="navbar-item">
-                                    <i class="fa fa-male" style="padding-right: 16px;"></i>
-                                    Artists
-                                </a>
-                                <hr class="navbar-divider">
-                                <a class="navbar-item" style="background-color: gold; margin-left: 5px; margin-right: 5px;">
-                                    <i class="fa fa-heart" style="padding-right: 10px;"></i>
-                                    Premium
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+                <div id="side-menu-button">
+                    <i class="fa fa-bars" style ="font-size: 25px;"></i>
+                </div>
             </div>
             <div id="center-search">
                 <div id="searchBar">
@@ -64,9 +36,24 @@
             </div>
         </div>
         <div id="centerArea" class="tile">
-            <div class="tile is-2" id="side-bar">
+            <div class="tile is-2 is-vertical" id="side-bar" style="background-color: ;">
                 <!-- Side bar -->
-                <p class="title" id="side-bar-title"> This is the side bar. I hope the text wraps. It does</p>
+                <a class="bold-left">
+                    <i class=" fa fa-home" style="padding-right: 10px; padding-left: 15px; padding-top: 15px;"></i>
+                    Home
+                </a>
+                <a class="bold-left">
+                    <i class="fa fa-leaf" style="padding-right: 10px; padding-left: 15px; padding-top: 15px;"></i>
+                    Genres
+                </a>
+                <a class="bold-left">
+                    <i class="fa fa-male" style="padding-right: 20px; padding-left: 15px; padding-top: 15px;"></i>
+                    Artists
+                </a>
+                <a class="bold-left" style="background-color: gold; width: 50%; color: black;">
+                    <i class="fa fa-heart" style="padding-right: 10px; padding-left: 15px; padding-top: 15px;"></i>
+                    Premium
+                </a>
               </div>
             <div class="tile is-4 is-vertical">
                 <div class="tile is-parent is-vertical" >
@@ -74,34 +61,34 @@
                     <div class="tile is-parent">
                         <div class="tile is-3 is-vertical">
                             <div class="tile is-child box" id="rec1" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="artist" class="bold">artist</p>
-                                <p id="song" class="bold">song</p>
+                                <p id="song" class="bold-sub">song</p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
                             <div class="tile is-child box" id="rec2" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="artist" class="bold">artist</p>
-                                <p id="song" class="bold">song</p>
+                                <p id="song" class="bold-sub">song</p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
                             <div class="tile is-child box" id="rec3" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="artist" class="bold">artist</p>
-                                <p id="song" class="bold">song</p>
+                                <p id="song" class="bold-sub">song</p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
                             <div class="tile is-child box" id="rec4" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="artist" class="bold">artist</p>
-                                <p id="song" class="bold">song</p>
+                                <p id="song" class="bold-sub">song</p>
                             </div>
                         </div> 
                     </div>
@@ -113,34 +100,34 @@
                     <div class="tile is-parent">
                         <div class="tile is-3 is-vertical">
                             <div class="tile is-child box" id="new1" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="artist" class="bold">artist</p>
-                                <p id="song" class="bold">song</p>
+                                <p id="song" class="bold-sub">song</p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
                             <div class="tile is-child box" id="new2" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="artist" class="bold">artist</p>
-                                <p id="song" class="bold">song</p>
+                                <p id="song" class="bold-sub">song</p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
                             <div class="tile is-child box" id="new3" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="artist" class="bold">artist</p>
-                                <p id="song" class="bold">song</p>
+                                <p id="song" class="bold-sub">song</p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
                             <div class="tile is-child box" id="new4" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="artist" class="bold">artist</p>
-                                <p id="song" class="bold">song</p>
+                                <p id="song" class="bold-sub">song</p>
                             </div>
                         </div>
                     </div>
@@ -152,34 +139,34 @@
                         <div class="tile is-parent">
                             <div class="tile is-3 is-vertical">
                                 <div class="tile is-child box" id="fav1" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="artist" class="bold">artist</p>
-                                    <p id="song" class="bold">song</p>
+                                    <p id="song" class="bold-sub">song</p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
                                 <div class="tile is-child box" id="fav2" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="artist" class="bold">artist</p>
-                                    <p id="song" class="bold">song</p>
+                                    <p id="song" class="bold-sub">song</p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
                                 <div class="tile is-child box" id="fav3" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="artist" class="bold">artist</p>
-                                    <p id="song" class="bold">song</p>
+                                    <p id="song" class="bold-sub">song</p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
                                 <div class="tile is-child box" id="fav4" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="artist" class="bold">artist</p>
-                                    <p id="song" class="bold">song</p>
+                                    <p id="song" class="bold-sub">song</p>
                                 </div>
                             </div> 
                         </div>
@@ -191,34 +178,34 @@
                         <div class="tile is-parent">
                             <div class="tile is-3 is-vertical">
                                 <div class="tile is-child box" id="hot1" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="artist" class="bold">artist</p>
-                                    <p id="song" class="bold">song</p>
+                                    <p id="song" class="bold-sub">song</p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
                                 <div class="tile is-child box" id="hot2" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="artist" class="bold">artist</p>
-                                    <p id="song" class="bold">song</p>
+                                    <p id="song" class="bold-sub">song</p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
                                 <div class="tile is-child box" id="hot3" style="background-color:rgb(26, 21, 29);  border: 1px solid  rgb(26, 21, 29);">
-                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="artist" class="bold">artist</p>
-                                    <p id="song" class="bold">song</p>
+                                    <p id="song" class="bold-sub">song</p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
                                 <div class="tile is-child box" id="hot4" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29) ;">
-                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;">
+                                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:100px;height:100px;" class="images">
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="artist" class="bold">artist</p>
-                                    <p id="song" class="bold">song</p>
+                                    <p id="song" class="bold-sub">song</p>
                                 </div>
                             </div>
                         </div>
