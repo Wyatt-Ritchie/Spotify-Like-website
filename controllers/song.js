@@ -17,15 +17,15 @@ function getSong(req, res){
  }
 
  function getSongs(req, res) {
-   console.log("Getting all songs");
 
    var albumName = req.query.album;
    var artistName = req.query.artist;
 
    // Get all songs
    if(!albumName && !artistName) {
+      console.log("Getting all songs");
       var page = parseInt(req.query.page) || 0;
-      var itemsPerPage = parseInt(req.query.limit) || 3;
+      var itemsPerPage = parseInt(req.query.limit) || 5;
       var query = {};
       Song.find(query)
          .sort({ update_at: -1 })
@@ -73,11 +73,48 @@ function getSong(req, res){
          console.log(error);
       });
    }
-   
 }
 
+// Randomly picks 4 songs from the database
+function getRecommendSongs(req, res) {
+   Song.aggregate([
+      {$sample: {size: 4}}
+   ], function(err, results) {
+      //console.log(results);
+      res.json(results);
+   });
+}
+
+function getTopSongs(req, res) {
+   Song.aggregate(
+      [
+          { "$sort": { "playCount": -1 } }, // Descending order
+          { "$limit": 5 }
+      ],
+      function(err,results) {
+         //console.log("results: ", result);
+         res.json(results);
+      }
+  );
+}
+
+function getNewSongs(req, res) {
+   Song.aggregate(
+      [
+          { "$sort": { "releaseDate": -1 } },
+          { "$limit": 5 }
+      ],
+      function(err,results) {
+         console.log("New songs: ", results);
+         res.json(results);
+      }
+  );
+}
 
 module.exports = {
    getSong,
    getSongs,
+   getRecommendSongs,
+   getTopSongs,
+   getNewSongs
  }

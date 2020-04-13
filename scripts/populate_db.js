@@ -66,31 +66,31 @@ artist7 = new Artist({
 
 album1 = new Album({
     name : "Divinely Uninspired To A Hellish Extent",
-    image : "../images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png",
+    image : "images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png",
     artist : artist1
 });
 
 album2 = new Album({
     name : "7 EP",
-    image : "../images/albums/7EP.png",
+    image : "images/albums/7EP.png",
     artist : artist3
 });
 
 album3 = new Album({
     name : "The Kids Are Coming",
-    image : "../images/albums/The Kids Are Coming.jpg",
+    image : "images/albums/The Kids Are Coming.jpg",
     artist : artist7
 });
 
 album4 = new Album({
     name : "Hollywood's Bleeding",
-    image : "../images/albums/Hollywood's Bleeding.png",
+    image : "images/albums/Hollywood's Bleeding.png",
     artist : artist6
 });
 
 album5 = new Album({
     name : "After Hours",
-    image : "../images/albums/After Hours_The Weeknd.jpg",
+    image : "images/albums/After Hours_The Weeknd.jpg",
     artist : artist2
 });
 
@@ -101,47 +101,68 @@ song1 = new Song({
     name : "Blinding Lights",
     artist : artist2,
     album : album5,
-    src : "../data/songs/The Weeknd - Blinding Lights.mp3"
+    playCount : 15000,
+    src : "data/songs/The Weeknd - Blinding Lights.mp3",
+    image: "images/songs/The_Weeknd_-_Blinding_Lights.png",
+    releaseDate: "2020-04-04"
 });
 
 song2 = new Song({
     name : "Someone You Loved",
     artist : artist1,
     album : album1,
-    src : "../data/songs/Lewis Capaldi - Someone You Loved.mp3"
+    playCount : 1500,
+    src : "data/songs/Lewis Capaldi - Someone You Loved.mp3",
+    image: "images/songs/Lewis_Capaldi_-_Someone_You_Loved.png",
+    releaseDate: "2018-11-08"
 });
 
 song3 = new Song({
     name : "Don't Start Now",
     artist : artist4,
-    src : "../data/songs/Dua Lipa - Don't Start Now.mp3"
+    playCount : 11850,
+    src : "data/songs/Dua Lipa - Don't Start Now.mp3",
+    image: "images/songs/Dua_Lipa_-_Don't_Start_Now.png",
+    releaseDate: "2019-10-31"
 });
 
 song4 = new Song({
     name : "Panini",
     artist : artist3,
     album : album2,
-    src : "../data/songs/Lil Nas X - Panini.mp3"
+    playCount : 10,
+    src : "data/songs/Lil Nas X - Panini.mp3",
+    image: "images/songs/Lil Nas X - Panini.jpeg",
+    releaseDate: "2019-06-20"
 });
 
 song5 = new Song({
     name : "Memories",
     artist : artist5,
-    src : "../data/songs/Maroon 5 - Memories.mp3"
+    playCount : 194053,
+    src : "data/songs/Maroon 5 - Memories.mp3",
+    image: "images/songs/Maroon_5_-_Memories.png",
+    releaseDate: "2019-09-20"
 });
 
 song6 = new Song({
     name : "Circles",
     artist : artist6,
     album : album4,
-    src : "../data/songs/Post Malone - Circles.mp3"
+    playCount : 15,
+    src : "data/songs/Post Malone - Circles.mp3",
+    image: "images/songs/Post_Malone_-_Circles.png",
+    releaseDate: "2019-08-30"
 });
 
 song7 = new Song({
-    name : "DANCE MONKEY",
+    name : "Dance Monkey",
     artist : artist7,
     album : album3,
-    src : "../data/songs/TONES AND I - DANCE MONKEY.mp3"
+    playCount : 2000000,
+    src : "data/songs/TONES AND I - DANCE MONKEY.mp3",
+    image: "images/songs/Dance_Monkey_by_Tones_and_I.jpg",
+    releaseDate: "2019-05-10"
 });
 
 allArtists = [artist1, artist2, artist3, artist4, artist5, artist6, artist7];

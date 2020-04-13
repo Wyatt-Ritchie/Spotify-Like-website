@@ -8,9 +8,11 @@ var mongoose = require('mongoose')
 var SongSchema = new Schema({
   name: {type: String}
 , src: {type: String}
-, playCount: {type: Number, default: 0} // Total plays
+, playCount: {type: Number, default: 0} // Total plays globally - not by user
 , artist: ArtistSchema
 , album: AlbumSchema
+, image: {type: String}
+, releaseDate:  {type: Date, default: Date.now}
 }, {
    collection: 'songs'
 });

@@ -12,7 +12,7 @@ let mongoose = require('mongoose');
 let uuid = require('uuid/v1');
 
 cors = require('cors');
-app.use(cors());
+app.use(cors({ credentials: true, origin: true }))
 
 var album_routes = require('./routes/album');
 var artist_routes = require('./routes/artist');
@@ -25,10 +25,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-// configure out view/templating engine
-app.set('views', __dirname + '/views');
-app.set('view engine', 'pug');
-
 // database config
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost:27017/MusicPlayer', {
@@ -39,16 +35,16 @@ mongoose.connect('mongodb://localhost:27017/MusicPlayer', {
          return console.error('Unable to connect:', error);
       }
    });
-//, {useMongoClient: true});
 mongoose.set('useCreateIndex', true);
 
 // session tracking
 app.use(session({
     genid: (request) => { return uuid(); },
     resave: false,
-    saveUninitialized: false,
-    // cookie: { secure: true},
+    saveUninitialized: true,
     secret: 'apollo slackware prepositional expectations',
+    cookie: { secure: false, httpOnly: true },
+    
 }));
 
 app.use('/api', album_routes);

@@ -101,28 +101,51 @@ $(document).ready(function(){
         // Displays the recommended songs (random)
         // requires a list of songs of length 4
         // loops through the list adding each song to the div
-        for(var i=1; i<5; i++){
-            // the artist name
-            $('#rec' + i).children('#artist').html("Lil Nas X");
-            // the song name
-            $('#rec' + i).children('#song').html('Panini');
-            // the album cover art
-            $('#rec' + i).children('img').attr('src', 'images/albums/7EP.png');
-        }
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/api/recommendedSongs',
+            success: function(response) { 
+                let stringified = JSON.stringify(response)
+                let parsed = JSON.parse(stringified);
+                for(var i=1; i<5; i++){
+                    // the artist name
+                    $('#rec' + i).children('#artist').html(parsed[i-1].artist.name);
+                    // the song name
+                    $('#rec' + i).children('#song').html(parsed[i-1].name);
+                    // the album cover art
+                    $('#rec' + i).children('img').attr('src', parsed[i-1].image);
+                }
+            },
+            error: function(xhr, status, err) {
+                alert("ERROR", err);
+            }
+        });
+        
     }
 
     function displayNew(newList){
         // Displays some songs that are new to the platform
         // requires a list of songs of length 4
         // loops through the list adding each song to the div
-        for(var i=1; i<5; i++){
-            // the artist name
-            $('#new' + i).children('#artist').html("Lil Nas X");
-            // the song name
-            $('#new' + i).children('#song').html('Panini');
-            // the album cover art
-            $('#new' + i).children('img').attr('src', 'images/albums/7EP.png');
-        }
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/api/newSongs',
+            success: function(response) { 
+                let stringified = JSON.stringify(response)
+                let parsed = JSON.parse(stringified);
+                for(var i=1; i<5; i++){
+                    // the artist name
+                    $('#new' + i).children('#artist').html(parsed[i-1].artist.name);
+                    // the song name
+                    $('#new' + i).children('#song').html(parsed[i-1].name);
+                    // the album cover art
+                    $('#new' + i).children('img').attr('src', parsed[i-1].image);
+                }
+            },
+            error: function(xhr, status, err) {
+                alert("ERROR", err);
+            }
+        });
     }
     
 
@@ -130,28 +153,51 @@ $(document).ready(function(){
         // Displays the most played songs by the user in the favourite section
         // requires a list of songs of length 4
         // loops through the list adding each song to the div
-        for(var i=1; i<5; i++){
-            // the artist name
-            $('#fav' + i).children('#artist').html("Lil Nas X");
-            // the song name
-            $('#fav' + i).children('#song').html('Panini');
-            // the album cover art
-            $('#fav' + i).children('img').attr('src', 'images/albums/7EP.png');
-        }
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/api/recommendedSongs',
+            success: function(response) { 
+                let stringified = JSON.stringify(response)
+                let parsed = JSON.parse(stringified);
+                for(var i=1; i<5; i++){
+                    // the artist name
+                    $('#fav' + i).children('#artist').html(parsed[i-1].artist.name);
+                    // the song name
+                    $('#fav' + i).children('#song').html(parsed[i-1].name);
+                    // the album cover art
+                    $('#fav' + i).children('img').attr('src', parsed[i-1].image);
+                }
+            },
+            error: function(xhr, status, err) {
+                alert("ERROR", err);
+            }
+        });
+        
     }
 
     function displayHot(hotList){
         // Displays what songs are hot right now
         // requires a list of songs of length 4
         // loops through the list adding each song to the div
-        for(var i=1; i<5; i++){
-            // the artist name
-            $('#hot' + i).children('#artist').html("Lil Nas X");
-            // the song name
-            $('#hot' + i).children('#song').html('Panini');
-            // the album cover art
-            $('#hot' + i).children('img').attr('src', 'images/albums/7EP.png');
-        }
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/api/topSongs',
+            success: function(response) { 
+                let stringified = JSON.stringify(response)
+                let parsed = JSON.parse(stringified);
+                for(var i=1; i<5; i++){
+                    // the artist name
+                    $('#hot' + i).children('#artist').html(parsed[i-1].artist.name);
+                    // the song name
+                    $('#hot' + i).children('#song').html(parsed[i-1].name);
+                    // the album cover art
+                    $('#hot' + i).children('img').attr('src', parsed[i-1].image);
+                }
+            },
+            error: function(xhr, status, err) {
+                alert("ERROR", err);
+            }
+        });
     }
 
     displayRecommended();
