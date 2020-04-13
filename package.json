@@ -9,11 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
-    "mongoose": "^5.9.6",
-    "body-parser": "^1.15.2",
-    "bcrypt-nodejs": "0.0.3",
+    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.7",
     "pug": "^2.0.4",
     "uuid": "^7.0.2"
   }

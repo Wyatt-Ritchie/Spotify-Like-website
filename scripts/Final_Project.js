@@ -9,7 +9,6 @@ $(document).ready(function(){
     updateSignInButton();
     
     $('#about-bar').hide();
-    
 
     $('#sign-in-button').click(function(){
         if(signedIn == false){
@@ -38,23 +37,28 @@ $(document).ready(function(){
         updateVolumeButton();
     })
 
-    $('img').hover(function(){
-        let artistName = $(this).parent().children("#artist").text();
-        let songName = $(this).parent().children("#song").text();
-        let imgSrc = $(this).attr('src');
+    $('img').parent().hover(function(){
+        let artistName = $(this).children("#artist").text();
+        let songName = $(this).children("#song").text();
+        let imgSrc = $(this).children("img").attr('src');
+        
         $('#info-bar-image').attr('src', imgSrc);
         document.getElementById('artist-name').innerHTML = artistName;
         document.getElementById('song-name').innerHTML = songName;
        
         if(hidden == false){
             $('#about-bar').hide();
+            $(this).attr('style', 'background-color: rgb(26, 21, 29);  border: 1px solid  rgb(26, 21, 29);')
+
             hidden = true;
         }else{
             $('#about-bar').show();
+            $(this).attr('style', 'background-color: rgb(67, 53, 75); border: 1px solid pink;')
             hidden = false;
         }
         console.log("hovering" + " " + imgSrc);
-    })
+    });
+
     function updateSignInButton(){
         if(signedIn == false){
             $('#sign-in-text').html('Sign In');

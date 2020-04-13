@@ -3,13 +3,19 @@
     align-items: center;
     
 }
+
+
+
 #centerArea {
-    border:3px black;
+    border:2px black solid;
+    background-color: rgb(26, 21, 29);
+    
 }
 
 #left-navigation{
     justify-content: left;
     width: 33%;
+    
 }
 
 #center-search {
@@ -31,7 +37,7 @@
     background-color: transparent;
 }
 #about-bar{
-    
+    border-left: 2px solid plum;
 }
 #side-bar{
     background-color: aquamarine;
@@ -69,10 +75,17 @@
     background-color: rgb(194, 193, 193);
 }
 
-
-
 #MusicPlayFooter{
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+.bold{
+    color: aquamarine;
+}
+
+.bold-title{
+    color: aquamarine;
+    font-size: 30px;
 }
