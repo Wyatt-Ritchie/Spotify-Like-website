@@ -163,12 +163,12 @@ $(document).ready(function(){
 
     function updateFavouriteButton(){
         if(favoutite==false){
-            $('#star').removeClass('fa fa-star-half');
+            $('#star').removeClass('fa fa-star-o');
             $('#star').addClass('fa fa-star');
             favoutite = true;
         }else{
             $('#star').removeClass('fa fa-star');
-            $('#star').addClass('fa fa-star-half');
+            $('#star').addClass('fa fa-star-o');
             favoutite = false;
         }
     }
