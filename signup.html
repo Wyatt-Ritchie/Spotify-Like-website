@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>Sign In</title>
+        <link rel="stylesheet" href="signup.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+        <script type="text/javascript" src="scripts/signup.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </header>
+    <body>
+        <div  id="input-section">
+            <p class="title" id="sign-in-title">Sign In</p>
+            <div class="field">
+                <p class="bold">Username:</p>
+                <p class="control has-icons-left">
+                    <input class="input" placeholder="Username" id="username">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-user-circle"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="bold">Passowrd:</p>
+                <p class="control has-icons-left">
+                    <input class="input" type="password" placeholder="Passowrd" id="password">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-lock"></i>
+                    </span>
+                </p>
+            </div>
+            <div id="sign-up-section">
+                <div class="field">
+                    <p class="bold">Repeat Password:</p>
+                    <p class="control has-icons-left">
+                        <input class="input" type="password" placeholder="Repeat Passowrd" id="repeat-pass">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="bold">Email:</p>
+                    <p class="control has-icons-left">
+                        <input class="input" type="email" placeholder="someone@something.com" id="email">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div id="form-end">
+                <div id="form-end-left">
+                    <button id="sign-in-button" class="button is-info is-rounded">
+                        <p id="sign-in-text">Sign In</p>
+                    </button>
+                    <p id="sign-in-alert" style="color: red;">Please fill in the text fields</p>
+                </div>
+                <div id="form-end-right">
+                    <a class="subtitle" id="has-account">Don't have an account?</a>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>

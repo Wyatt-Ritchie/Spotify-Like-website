@@ -1,0 +1,28 @@
+#input-section{
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 3%;
+}
+
+#form-end{
+    display: flex;
+    padding-top: 5px;
+}
+
+#form-end-left{
+    width: 50%;
+    justify-content: left;
+}
+
+#form-end-right{
+    width: 50%;
+    justify-content: right;
+    text-align: right;
+}
+
+#has-account{
+    font-size: 13px;
+    align-self: flex-end;
+    
+}

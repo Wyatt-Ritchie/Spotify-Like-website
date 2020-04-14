@@ -17,6 +17,7 @@ $(document).ready(function(){
 
     $('#sign-in-button').click(function(){
         if(signedIn == false){
+            $(this).attr('location', 'href="signup.html"');
             signedIn = true;
             updateSignInButton();
         }else{
