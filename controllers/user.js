@@ -7,7 +7,8 @@ var express = require('express');
 function processLogin(req, res){
     let username = req.query.username;
     let password = req.query.password;
-
+    console.log(username);
+    console.log(password);
     User.find({username: username}).then(function(results) {
         if (results.length != 1) {
            console.log('login: no user found');
@@ -81,20 +82,48 @@ async function upgradeToPremium(req, res) {
     });
 }
 
-function addSongToUser(req, res) {
-    const filter = { username: req.session.username };
-    console.log("Adding song to user: ", req.session.username)
+function addOrRemoveSong(req, res) {
+    let username = req.session.username;
+    //console.log("Adding or removing song. User: ", req.session.username)
     const songname = req.query.songname;
     Song.find({name : songname}).then(function(songResults) {
         if(songResults.length == 1) {
-            console.log("Song found: ", songResults[0]);
-            User.findOneAndUpdate(
-                filter,
-                { $push: { songs: songResults[0] } },
-                { upsert: true }, 
-                function(err, data) {
-                    console.log(err);
+            const filter = { username: req.session.username };
+            var isLiked = false;
+            User.find({username: username}).then(function(results) {
+                
+                console.log("User results: ", results);
+                results[0].songs.forEach(function (song, index) {
+                    //console.log("Song name: ", song);
+                    if(song.name == songname) {
+                        // Song is already liked by user
+                        isLiked = true;
+                    }
+                });
+
+                if(!isLiked) {
+                    User.findOneAndUpdate(
+                        filter,
+                        { $push: { songs: songResults[0] } },
+                        { upsert: true }, 
+                        function(err, data) {
+                            console.log(err);
+                    });
+                } else {
+                    User.findOneAndUpdate(
+                        filter,
+                        { $pull: { songs: songResults[0] } },
+                        { 'new': true },
+                        function(err, data) {
+                            console.log(err);
+                    });
+                }
+
+            }).catch(function(error) {
+                console.log(error);
             });
+            
+            
         } else {
             console.log("Song not found!");
         }
@@ -102,17 +131,59 @@ function addSongToUser(req, res) {
     }).catch(function(error) {
         console.log(error);
     });
+}
 
+function isSongLiked(req, res) {
+    let username = req.session.username;
+    let songname = req.query.songname;
+    let artistname = req.query.artistname;
+    //console.log("Songname: ", songname);
+    //console.log("Username: ", username);
+
+    User.find({username: username}).then(function(results) {
+        var isLiked = false;
+        //console.log("User results: ", results);
+        results[0].songs.forEach(function (song, index) {
+            //console.log("Song name: ", song);
+            if(song.name == songname && song.artist.name == artistname) {
+                // Song is already liked by user => return true
+                //console.log("Song is liked");
+                isLiked = true;
+            }
+        });
+        if(isLiked) {
+            // Song is liked
+            res.send(200, {"result": true});
+        } else {
+            // Song is not by user liked => return false
+            res.send(200, {"result": false});
+        }
+        
+    }).catch(function(error) {
+        console.log(error);
+    });
+}
+
+function isLoggedIn(req, res) {
+    let username = req.session.username;
+    if(username == '' || username === undefined) {
+        res.send(200, {"result": false});
+    } else {
+        res.send(200, {"result": true});
+    }
 }
 
 function logout(req, res) {
     req.session.username = '';
+    res.send(200);
 }
 
 module.exports = {
     processLogin,
     processRegistration,
     upgradeToPremium,
-    addSongToUser,
+    addOrRemoveSong,
+    isSongLiked,
+    isLoggedIn,
     logout
   }

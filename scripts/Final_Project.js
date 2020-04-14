@@ -2,12 +2,12 @@ $(document).ready(function(){
     
     let signedIn = false;
     let play = false;
-    let favoutite = false;
+    let favourite = false;
     let mute = false;
     let hidden = true;
     let leftHidden = true;
     var elapsed_time = 0;
-    updateSignInButton();
+    checkIfLoggedIn();
     var timer = null;
     var progBarIncrementVal = 0.0;
 
@@ -18,11 +18,9 @@ $(document).ready(function(){
     $('#sign-in-button').click(function(){
         if(signedIn == false){
             $(this).attr('location', 'href="signup.html"');
-            signedIn = true;
-            updateSignInButton();
-        }else{
-            signedIn = false;
-            updateSignInButton();
+        } else {
+            // Call logout
+            logout();
         }
         console.log("Clicked");
     })
@@ -44,7 +42,7 @@ $(document).ready(function(){
         console.log("Clicked");
     })
     $('#favourite').click(function(){
-        updateFavouriteButton();
+        likeOrUnlikeSong();
     })
     $('#volume').click(function(){
         updateVolumeButton();
@@ -128,6 +126,8 @@ $(document).ready(function(){
         play = false;
         updatePlayButton();
         play = true;
+
+        chechSongAndUpdateStar();
     });
 
     function incrementSeconds() {
@@ -162,15 +162,15 @@ $(document).ready(function(){
         } 
     }
 
-    function updateFavouriteButton(){
-        if(favoutite==false){
+    function updateFavouriteButton(active){
+        if(active){
             $('#star').removeClass('fa fa-star-o');
             $('#star').addClass('fa fa-star');
-            favoutite = true;
-        }else{
+            favourite = true;
+        } else {
             $('#star').removeClass('fa fa-star');
             $('#star').addClass('fa fa-star-o');
-            favoutite = false;
+            favourite = false;
         }
     }
 
@@ -237,6 +237,32 @@ $(document).ready(function(){
                     $('#new' + i).children('#srcPath').html(parsed[i-1].src);
                     // duration
                     $('#new' + i).children('#duration').html(parsed[i-1].duration);
+
+                    // Default selected song on page refresh
+                    if(i == 1) {
+                        $('#playing-song').attr('src', parsed[0].image);
+                        document.getElementById('footer-artist-name').innerHTML = parsed[0].artist.name;
+                        document.getElementById('footer-song-name').innerHTML = parsed[0].name;
+                        document.getElementById('play-bar-song-name').innerHTML = parsed[0].name;
+                        // Convert duration to minutes and seconds
+                        let duration = parsed[0].duration;
+                        var minutes = Math.floor(duration / 60);
+                        var seconds = duration - minutes * 60;
+
+                        // Set total-time
+                        if(seconds.toString().length == 1) {
+                            $('#total-time').html(minutes + ":" + "0" + seconds);
+                        } else {
+                            $('#total-time').html(minutes + ":" + seconds);
+                        }
+                        var player = document.getElementById('player')
+                        player.src = parsed[0].src;
+
+                        progBarIncrementVal = 100 / parsed[0].duration;
+
+                        chechSongAndUpdateStar();
+                        
+                    }
                 }
             },
             error: function(xhr, status, err) {
@@ -252,21 +278,27 @@ $(document).ready(function(){
         // loops through the list adding each song to the div
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:3000/api/recommendedSongs',
+            url: 'http://localhost:3000/api/favouriteSongs',
+            xhrFields: {
+                withCredentials: true
+            },
             success: function(response) { 
                 let stringified = JSON.stringify(response)
                 let parsed = JSON.parse(stringified);
                 for(var i=1; i<5; i++){
-                    // the artist name
-                    $('#fav' + i).children('#artist').html(parsed[i-1].artist.name);
-                    // the song name
-                    $('#fav' + i).children('#song').html(parsed[i-1].name);
-                    // the album cover art
-                    $('#fav' + i).children('img').attr('src', parsed[i-1].image);
-                    // source path
-                    $('#fav' + i).children('#srcPath').html(parsed[i-1].src);
-                    // duration
-                    $('#fav' + i).children('#duration').html(parsed[i-1].duration);
+                    if(parsed[i-1]) {
+                        // the artist name
+                        $('#fav' + i).children('#artist').html(parsed[i-1].artist.name);
+                        // the song name
+                        $('#fav' + i).children('#song').html(parsed[i-1].name);
+                        // the album cover art
+                        $('#fav' + i).children('img').attr('src', parsed[i-1].image);
+                        // source path
+                        $('#fav' + i).children('#srcPath').html(parsed[i-1].src);
+                        // duration
+                        $('#fav' + i).children('#duration').html(parsed[i-1].duration);
+                    }
+                    
                 }
             },
             error: function(xhr, status, err) {
@@ -298,6 +330,101 @@ $(document).ready(function(){
                     // duration
                     $('#hot' + i).children('#duration').html(parsed[i-1].duration);
                 }
+            },
+            error: function(xhr, status, err) {
+                alert("ERROR", err);
+            }
+        });
+    }
+
+    // Checks current selected song whether it's liked by user and updates it
+    function chechSongAndUpdateStar() {
+        let songname = document.getElementById('footer-song-name').innerHTML;
+        let artistname = document.getElementById('footer-artist-name').innerHTML;
+        
+        var url = "http://localhost:3000/api/isSongLiked?songname=" + songname + "&artistname=" + artistname;
+        //alert(url);
+        $.ajax({
+            type: 'GET',
+            url: url,
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(response) { 
+                let res = JSON.stringify(response);
+                let json = JSON.parse(res);
+                if(json.result == true) {
+                    updateFavouriteButton(true);
+                } else {
+                    updateFavouriteButton(false);
+                }
+            },
+            error: function(xhr, status, err) {
+                alert("ERROR", err);
+            }
+        });
+    }
+    
+    // Toggle like/unlike a song accordingly
+    function likeOrUnlikeSong() {
+        let songname = document.getElementById('footer-song-name').innerHTML;
+        var URL = "http://localhost:3000/api/addOrRemoveSong?songname=" + songname;
+        $.ajax({
+            type: 'POST',
+            xhrFields: {
+                withCredentials: true
+            },
+            url: URL,
+            success: function() { 
+            },
+            error: function(xhr, status, err) {
+                alert(err, "ERROR");
+            }
+        });
+        if(!favourite) {
+            updateFavouriteButton(true);
+        } else {
+            updateFavouriteButton(false);
+        }
+    }
+
+    function checkIfLoggedIn() {
+        $.ajax({
+            type: 'GET',
+            url: "http://localhost:3000/api/isLoggedIn",
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(response) { 
+                //alert(JSON.stringify(response));
+                let res = JSON.stringify(response);
+                let json = JSON.parse(res);
+                if(json.result) {
+                    // User is logged in
+                    signedIn = true;
+                } else {
+                    // User is not logged in
+                    signedIn = false;
+                }
+                updateSignInButton()
+
+            },
+            error: function(xhr, status, err) {
+                alert("ERROR", err);
+            }
+        });
+    }
+
+    function logout() {
+        $.ajax({
+            type: 'POST',
+            url: "http://localhost:3000/api/logout",
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(response) { 
+                signedIn = false;
+                updateSignInButton();
             },
             error: function(xhr, status, err) {
                 alert("ERROR", err);

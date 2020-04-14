@@ -3,7 +3,6 @@ $(document).ready(function(){
     let username = "";
     let password = "";
     let repeatPass = "";
-    let email = "";
     $('#sign-up-section').slideUp();
     $('#sign-in-alert').hide();
 
@@ -30,21 +29,53 @@ $(document).ready(function(){
                 username = $('#username').val();
                 password= $('#password').val();
                 
-                window.location.replace("Final_Project.html")
+                var URL = "http://localhost:3000/api/login?username=" + username + "&password=" + password;
 
                 // Now check to see if the username and password match someone in the db.
                 // if they do match, send to homepage while signed in
                 // if they don't match, try again I guess
+                $.ajax({
+                    type: 'POST',
+                    url: URL,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function(response) { 
+                        window.location.replace("Final_Project.html")
+                    },
+                    error: function(xhr, status, err) {
+                        alert(err, "ERROR");
+                    }
+                });
+
+                
             }
         }else{
             username = $('#username').val();
             password = $('#password').val();
             repeatPass = $('#repeat-pass').val();
-            email = $('#email').val();
+            var URL = "http://localhost:3000/api/processRegistration?username=" + username + "&password=" + password;
 
             // Create a user with this information. Check to make sure the passwords match
             // then send back to the homepage
-            window.location.replace("Final_Project.html")
+            $.ajax({
+                type: 'POST',
+                url: URL,
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function(response) { 
+                    //alert(response);
+                    //alert("SUCCESS")
+                    //alert(JSON.stringify(response));
+                    window.location.replace("Final_Project.html")
+                },
+                error: function(xhr, status, err) {
+                    alert(err, "ERROR");
+                }
+            });
+            
+            
         }
         
         

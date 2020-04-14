@@ -1,4 +1,5 @@
 var Song = require('../models/song');
+var User = require('../models/user');
 
 function getSong(req, res){
    var songName = req.query.name;
@@ -55,7 +56,7 @@ function getSong(req, res){
       
       Song.find({'artist.name': artistName}).then(function(songs) {
          console.log("Songs found:")
-         console.log(songs);
+         //console.log(songs);
          res.status(200).send({songs});
       }).catch(function(error) {
          console.log(error);
@@ -67,7 +68,7 @@ function getSong(req, res){
       
       Song.find({'album.name': albumName}).then(function(songs) {
          console.log("Songs found:")
-         console.log(songs);
+         //console.log(songs);
          res.status(200).send({songs});
       }).catch(function(error) {
          console.log(error);
@@ -82,7 +83,22 @@ function getRecommendSongs(req, res) {
    ], function(err, results) {
       //console.log(results);
       res.json(results);
+   });    
+}
+
+function getFavouriteSongs(req, res) {
+   let username = req.session.username;
+
+   //console.log("Adding or removing song. User: ", req.session.username)
+   const filter = { username: req.session.username };
+   User.find({username: username}).then(function(results) {
+      res.json(results[0].songs);
+
+   }).catch(function(error) {
+      console.log(error);
    });
+
+   
 }
 
 function getTopSongs(req, res) {
@@ -105,7 +121,7 @@ function getNewSongs(req, res) {
           { "$limit": 5 }
       ],
       function(err,results) {
-         console.log("New songs: ", results);
+         //console.log("New songs: ", results);
          res.json(results);
       }
   );
@@ -115,6 +131,7 @@ module.exports = {
    getSong,
    getSongs,
    getRecommendSongs,
+   getFavouriteSongs,
    getTopSongs,
    getNewSongs
  }

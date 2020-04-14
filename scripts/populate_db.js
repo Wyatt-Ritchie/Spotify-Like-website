@@ -27,7 +27,7 @@ mongoose.connect('mongodb://localhost:27017/MusicPlayer', {
    });
 mongoose.set('useCreateIndex', true);
 
-//User.collection.drop();
+User.collection.drop();
 Artist.collection.drop();
 Song.collection.drop();
 Album.collection.drop();

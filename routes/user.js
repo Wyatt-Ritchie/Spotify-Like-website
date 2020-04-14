@@ -5,7 +5,9 @@ var api = express.Router();
 api.post('/processRegistration:username?:password?', UserController.processRegistration);
 api.post('/login:username?:password?', UserController.processLogin);
 api.post('/upgradeToPremium', UserController.upgradeToPremium);
-api.post('/addSongToUser:songname?', UserController.addSongToUser);
+api.post('/addOrRemoveSong:songname?', UserController.addOrRemoveSong);
+api.get('/isSongLiked:songname?:artistname?', UserController.isSongLiked);
+api.get('/isLoggedIn?', UserController.isLoggedIn);
 api.post('/logout', UserController.logout);
 
 
