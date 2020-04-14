@@ -13,6 +13,7 @@ var SongSchema = new Schema({
 , album: AlbumSchema
 , image: {type: String}
 , releaseDate:  {type: Date, default: Date.now}
+, duration: {type: Number} // seconds
 }, {
    collection: 'songs'
 });

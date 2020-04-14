@@ -6,13 +6,14 @@ $(document).ready(function(){
     let mute = false;
     let hidden = true;
     let leftHidden = true;
-    var albumList = ["7EP.png", "After Hours_The Weekend.jpg", "Hollywood's Bleeding", "Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent", "The Kids Are Coming"];
+    var elapsed_time = 0;
     updateSignInButton();
-    
+    var timer = null;
+    var progBarIncrementVal = 0.0;
+
     $('#about-bar').hide();
     $('#side-bar').hide();
     $('.fa-play-circle').hide();
-
 
     $('#sign-in-button').click(function(){
         if(signedIn == false){
@@ -25,12 +26,19 @@ $(document).ready(function(){
         console.log("Clicked");
     })
     $('#pauseAndPlay').click(function(){
+        var player = document.getElementById('player')
         if(play == false){
             updatePlayButton();
             play = true;
+            player.play();
+            timer = setInterval(incrementSeconds, 1000);
         }else{
             updatePlayButton();
             play = false;
+            player.pause();
+            if(timer != null) {
+                clearInterval(timer);
+            }
         }
         console.log("Clicked");
     })
@@ -84,7 +92,57 @@ $(document).ready(function(){
         document.getElementById('footer-song-name').innerHTML = songName;
         document.getElementById('play-bar-song-name').innerHTML = songName;
 
+        
+        var player = document.getElementById('player')
+        player.src = $(this).children("#srcPath").text();
+
+        // Convert duration to minutes and seconds
+        let duration = $(this).children("#duration").text();
+        var minutes = Math.floor(duration / 60);
+        var seconds = duration - minutes * 60;
+
+        // Set total-time
+        if(seconds.toString().length == 1) {
+            $('#total-time').html(minutes + ":" + "0" + seconds);
+        } else {
+            $('#total-time').html(minutes + ":" + seconds);
+        }
+
+        // Reset the elapsed time
+        $('#elapsed-time').html("0:00");
+        elapsed_time = 0;
+        if(timer != null) {
+            clearInterval(timer);
+        }
+
+        // Start the timer
+        timer = setInterval(incrementSeconds, 1000);
+
+        // Set progress bar increment value and reset the progress bar
+        progBarIncrementVal = 100 / duration;
+        $('#bar').val(0);
+
+        // Play the song and update the play button
+        player.play();
+        play = false;
+        updatePlayButton();
+        play = true;
     });
+
+    function incrementSeconds() {
+        elapsed_time += 1;
+        var minutes = Math.floor(elapsed_time / 60);
+        var seconds = elapsed_time - minutes * 60;
+        if(seconds.toString().length == 1) {
+            $('#elapsed-time').html(minutes + ":" + "0" + seconds);
+        } else {
+            $('#elapsed-time').html(minutes + ":" + seconds);
+        }
+        var curr_val = $('#bar').val();
+        var new_val = Number(curr_val) + progBarIncrementVal;
+        $('#bar').val(new_val);
+    }
+
     function updateSignInButton(){
         if(signedIn == false){
             $('#sign-in-text').html('Sign In');
@@ -144,6 +202,10 @@ $(document).ready(function(){
                     $('#rec' + i).children('#song').html(parsed[i-1].name);
                     // the album cover art
                     $('#rec' + i).children('img').attr('src', parsed[i-1].image);
+                    // source path
+                    $('#rec' + i).children('#srcPath').html(parsed[i-1].src);
+                    // duration
+                    $('#rec' + i).children('#duration').html(parsed[i-1].duration);
                 }
             },
             error: function(xhr, status, err) {
@@ -170,6 +232,10 @@ $(document).ready(function(){
                     $('#new' + i).children('#song').html(parsed[i-1].name);
                     // the album cover art
                     $('#new' + i).children('img').attr('src', parsed[i-1].image);
+                    // source path
+                    $('#new' + i).children('#srcPath').html(parsed[i-1].src);
+                    // duration
+                    $('#new' + i).children('#duration').html(parsed[i-1].duration);
                 }
             },
             error: function(xhr, status, err) {
@@ -196,6 +262,10 @@ $(document).ready(function(){
                     $('#fav' + i).children('#song').html(parsed[i-1].name);
                     // the album cover art
                     $('#fav' + i).children('img').attr('src', parsed[i-1].image);
+                    // source path
+                    $('#fav' + i).children('#srcPath').html(parsed[i-1].src);
+                    // duration
+                    $('#fav' + i).children('#duration').html(parsed[i-1].duration);
                 }
             },
             error: function(xhr, status, err) {
@@ -222,6 +292,10 @@ $(document).ready(function(){
                     $('#hot' + i).children('#song').html(parsed[i-1].name);
                     // the album cover art
                     $('#hot' + i).children('img').attr('src', parsed[i-1].image);
+                    // source path
+                    $('#hot' + i).children('#srcPath').html(parsed[i-1].src);
+                    // duration
+                    $('#hot' + i).children('#duration').html(parsed[i-1].duration);
                 }
             },
             error: function(xhr, status, err) {

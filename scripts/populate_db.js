@@ -104,7 +104,8 @@ song1 = new Song({
     playCount : 15000,
     src : "data/songs/The Weeknd - Blinding Lights.mp3",
     image: "images/songs/The_Weeknd_-_Blinding_Lights.png",
-    releaseDate: "2020-04-04"
+    releaseDate: "2020-04-04",
+    duration : 203
 });
 
 song2 = new Song({
@@ -114,7 +115,8 @@ song2 = new Song({
     playCount : 1500,
     src : "data/songs/Lewis Capaldi - Someone You Loved.mp3",
     image: "images/songs/Lewis_Capaldi_-_Someone_You_Loved.png",
-    releaseDate: "2018-11-08"
+    releaseDate: "2018-11-08",
+    duration : 186
 });
 
 song3 = new Song({
@@ -123,7 +125,8 @@ song3 = new Song({
     playCount : 11850,
     src : "data/songs/Dua Lipa - Don't Start Now.mp3",
     image: "images/songs/Dua_Lipa_-_Don't_Start_Now.png",
-    releaseDate: "2019-10-31"
+    releaseDate: "2019-10-31",
+    duration : 181
 });
 
 song4 = new Song({
@@ -133,7 +136,8 @@ song4 = new Song({
     playCount : 10,
     src : "data/songs/Lil Nas X - Panini.mp3",
     image: "images/songs/Lil Nas X - Panini.jpeg",
-    releaseDate: "2019-06-20"
+    releaseDate: "2019-06-20",
+    duration : 145
 });
 
 song5 = new Song({
@@ -142,7 +146,8 @@ song5 = new Song({
     playCount : 194053,
     src : "data/songs/Maroon 5 - Memories.mp3",
     image: "images/songs/Maroon_5_-_Memories.png",
-    releaseDate: "2019-09-20"
+    releaseDate: "2019-09-20",
+    duration : 195
 });
 
 song6 = new Song({
@@ -152,7 +157,8 @@ song6 = new Song({
     playCount : 15,
     src : "data/songs/Post Malone - Circles.mp3",
     image: "images/songs/Post_Malone_-_Circles.png",
-    releaseDate: "2019-08-30"
+    releaseDate: "2019-08-30",
+    duration : 226
 });
 
 song7 = new Song({
@@ -162,7 +168,8 @@ song7 = new Song({
     playCount : 2000000,
     src : "data/songs/TONES AND I - DANCE MONKEY.mp3",
     image: "images/songs/Dance_Monkey_by_Tones_and_I.jpg",
-    releaseDate: "2019-05-10"
+    releaseDate: "2019-05-10",
+    duration : 256
 });
 
 allArtists = [artist1, artist2, artist3, artist4, artist5, artist6, artist7];

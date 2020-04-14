@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </header>
     <body>
+        <audio id="player" preload="auto"></audio>
         <div id="top-bar" class="container is-fluid">
             <div id="left-navigation">
                 <div id="side-menu-button">
@@ -65,6 +66,8 @@
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="song" class="bold-sub">song</p>
                                 <p id="artist" class="bold">artist</p>
+                                <p hidden id="srcPath" ></p>
+                                <p hidden id="duration" ></p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
@@ -73,6 +76,8 @@
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="song" class="bold-sub">song</p>
                                 <p id="artist" class="bold">artist</p>
+                                <p hidden id="srcPath" ></p>
+                                <p hidden id="duration" ></p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
@@ -81,6 +86,8 @@
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="song" class="bold-sub">song</p>
                                 <p id="artist" class="bold">artist</p>
+                                <p hidden id="srcPath" ></p>
+                                <p hidden id="duration" ></p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
@@ -89,6 +96,8 @@
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="song" class="bold-sub">song</p>
                                 <p id="artist" class="bold">artist</p>
+                                <p hidden id="srcPath" ></p>
+                                <p hidden id="duration" ></p>
                             </div>
                         </div> 
                     </div>
@@ -104,6 +113,8 @@
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="song" class="bold-sub">song</p>
                                 <p id="artist" class="bold">artist</p>
+                                <p hidden id="srcPath" ></p>
+                                <p hidden id="duration" ></p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
@@ -112,6 +123,8 @@
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="song" class="bold-sub">song</p>
                                 <p id="artist" class="bold">artist</p>
+                                <p hidden id="srcPath" ></p>
+                                <p hidden id="duration" ></p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
@@ -120,6 +133,8 @@
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="song" class="bold-sub">song</p>
                                 <p id="artist" class="bold">artist</p>
+                                <p hidden id="srcPath" ></p>
+                                <p hidden id="duration" ></p>
                             </div>
                         </div>
                         <div class="tile is-3 is-vertical">
@@ -128,6 +143,8 @@
                                 <i class="fa fa-play-circle fa-2x"></i>
                                 <p id="song" class="bold-sub">song</p>
                                 <p id="artist" class="bold">artist</p>
+                                <p hidden id="srcPath" ></p>
+                                <p hidden id="duration" ></p>
                             </div>
                         </div>
                     </div>
@@ -143,6 +160,8 @@
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="song" class="bold-sub">song</p>
                                     <p id="artist" class="bold">artist</p>
+                                    <p hidden id="srcPath" ></p>
+                                    <p hidden id="duration" ></p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
@@ -151,6 +170,8 @@
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="song" class="bold-sub">song</p>
                                     <p id="artist" class="bold">artist</p>
+                                    <p hidden id="srcPath" ></p>
+                                    <p hidden id="duration" ></p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
@@ -159,6 +180,8 @@
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="song" class="bold-sub">song</p>
                                     <p id="artist" class="bold">artist</p>
+                                    <p hidden id="srcPath" ></p>
+                                    <p hidden id="duration" ></p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
@@ -167,6 +190,8 @@
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="song" class="bold-sub">song</p>
                                     <p id="artist" class="bold">artist</p>
+                                    <p hidden id="srcPath" ></p>
+                                    <p hidden id="duration" ></p>
                                 </div>
                             </div> 
                         </div>
@@ -182,6 +207,8 @@
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="song" class="bold-sub">song</p>
                                     <p id="artist" class="bold">artist</p>
+                                    <p hidden id="srcPath" ></p>
+                                    <p hidden id="duration" ></p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
@@ -190,6 +217,8 @@
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="song" class="bold-sub">song</p>
                                     <p id="artist" class="bold">artist</p>
+                                    <p hidden id="srcPath" ></p>
+                                    <p hidden id="duration" ></p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
@@ -198,6 +227,8 @@
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="song" class="bold-sub">song</p>
                                     <p id="artist" class="bold">artist</p>
+                                    <p hidden id="srcPath" ></p>
+                                    <p hidden id="duration" ></p>
                                 </div>
                             </div>
                             <div class="tile is-3 is-vertical">
@@ -206,6 +237,8 @@
                                     <i class="fa fa-play-circle fa-2x"></i>
                                     <p id="song" class="bold-sub">song</p>
                                     <p id="artist" class="bold">artist</p>
+                                    <p hidden id="srcPath" ></p>
+                                    <p hidden id="duration" ></p>
                                 </div>
                             </div>
                         </div>
@@ -250,7 +283,7 @@
                     </div>
                     <div class="play-bar">
                         <p id="elapsed-time" class="bold-sub"> 0:00</p>
-                        <progress id='bar'class="progress is-small is-primary" value="15" max="100"></progress>
+                        <progress id='bar'class="progress is-small is-primary" value="0" max="100"></progress>
                         <p id="total-time" class="bold-sub"> 5:00</p>
                     </div>
                     
