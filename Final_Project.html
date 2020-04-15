@@ -1,341 +1,361 @@
 <!DOCTYPE html>
 <html>
-    <header>
-        <title>Final Project</title>
-        <link rel="stylesheet" href="Final_Project.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-        <script type="text/javascript" src="scripts/Final_Project.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </header>
-    <body>
-        <audio id="player" preload="auto"></audio>
-        <div id="top-bar" class="container is-fluid">
-            <div id="left-navigation">
-                <div id="side-menu-button">
-                    <i class="fa fa-bars" style ="font-size: 25px;"></i>
+<header>
+    <title>Final Project</title>
+    <link rel="stylesheet" href="Final_Project.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="scripts/Final_Project.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</header>
+
+<body>
+    <audio id="player" preload="auto"></audio>
+    <div id="top-bar" class="container is-fluid">
+        <div id="left-navigation">
+            <div id="side-menu-button">
+                <i class="fa fa-bars" style="font-size: 25px;"></i>
+            </div>
+        </div>
+        <div id="center-search">
+            <div id="searchBar" class="control has-icons-left">
+                <input class="input" type="text" placeholder="Search" style="width: 60%;">
+                <span class="icon is-left">
+                    <i class="fa fa-search" style="font-size:30px;"></i>
+                </span>
+            </div>
+        </div>
+        <div id="right-account">
+            <div id="sign-in" style="text-align: right;">
+                <button id="sign-in-button" class="button is-info is-rounded" onclick="location.href='signup.html'">
+                    <p id="sign-in-text"></p>
+                </button>
+                <a id="account-link" class="link">
+                    <i class="fa fa-user-circle" style="font-size: 40px; color: white;"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="centerArea" class="tile">
+        <div class="tile is-2 is-vertical" id="side-bar">
+            <!-- Side bar -->
+            <a class="bold-left">
+                <i class=" fa fa-home" style="padding-right: 10px; padding-left: 15px; padding-top: 15px;"></i>
+                Home
+            </a>
+            <a class="bold-left">
+                <i class="fa fa-leaf" style="padding-right: 10px; padding-left: 15px; padding-top: 15px;"></i>
+                Genres
+            </a>
+            <a class="bold-left" href="signup.html">
+                <i class="fa fa-male" style="padding-right: 20px; padding-left: 15px; padding-top: 15px;"></i>
+                Account
+            </a>
+            <a class="bold-left" style="background-color: gold; width: 50%; color: black;" onclick="$('#premiumModal').show()">
+                <i class="fa fa-heart" style="padding-right: 10px; padding-left: 15px; "></i>
+                Premium
+            </a>
+        </div>
+        <div class="tile is-4 is-vertical">
+            <div class="tile is-parent is-vertical">
+                <p class="bold-title" id="recommended-title"> Recommended section</p>
+                <div class="tile is-parent">
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="rec1"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="rec2"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="rec3"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="rec4"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Top tile -->
+            </div>
+            <div class="tile is-parent is-vertical">
+                <!-- Bottom tile -->
+                <p class="bold-title" id="side-bar-title"> New Section</p>
+                <div class="tile is-parent">
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="new1"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="new2"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="new3"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="new4"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="center-search">
-                <div id="searchBar" class="control has-icons-left">
-                    <input class="input" type="text" placeholder="Search" style="width: 60%;">
-                    <span class="icon is-left">
-                        <i class="fa fa-search" style="font-size:30px;"></i>
-                    </span>
+        </div>
+        <div class="tile is-4 is-vertical">
+            <div class="tile is-parent is-vertical">
+                <p class="bold-title" id="recommended-title">Favourites</p>
+                <div class="tile is-parent">
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="fav1"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img src="" style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="fav2"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img src="" style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="fav3"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img src="" style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="fav4"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img src="" style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
                 </div>
+                <!-- Top tile -->
             </div>
-            <div id="right-account">
-                <div id="sign-in" style="text-align: right;">
-                    <button id="sign-in-button" class="button is-info is-rounded" onclick="location.href='signup.html'">
-                        <p id="sign-in-text"></p>
+            <div class="tile is-parent is-vertical">
+                <!-- Bottom tile -->
+                <p class="bold-title" id="side-bar-title">Hot Section</p>
+                <div class="tile is-parent">
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="hot1"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="hot2"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="hot3"
+                            style="background-color:rgb(26, 21, 29);  border: 1px solid  rgb(26, 21, 29);">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                    <div class="tile is-3 is-vertical">
+                        <div class="tile is-child box" id="hot4"
+                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29) ;">
+                            <img style="width:100px;height:100px;" class="images">
+                            <i class="fa fa-play-circle fa-2x"></i>
+                            <p id="song" class="bold-sub"></p>
+                            <p id="artist" class="bold"></p>
+                            <p hidden id="srcPath"></p>
+                            <p hidden id="duration"></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="tile is-vertical" id="about-bar">
+            <div class="tile is-vertical">
+                <p class="title has-text-white-ter" id="artist-name">Artist</p>
+                <p class="subtitle has-text-white-ter" id="song-name">Song</p>
+                <img id="info-bar-image" src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png"
+                    style="width:300px;height:300px;">
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div id="MusicPlayFooter">
+        <footer class="Mfooter">
+            <div class="play-left">
+                <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" id="playing-song"
+                    style="width:50px;height:50px;">
+                <p id="footer-song-name" class="bold-sub">Someone You Loved</p>
+                <p id="footer-artist-name" class="bold">Lewis Capaldi</p>
+            </div>
+            <div class="play-center">
+                <p id="play-bar-song-name" class="bold-sub">Someone You Loved</p>
+                <div class="button-bar">
+                    <button class="play-button" id="favourite" style="width: 30px;">
+                        <i class="fa fa-star-o" style="font-size:18px" id="star"></i>
                     </button>
-                    <a id="account-link" class="link">
-                        <i class="fa fa-user-circle" style="font-size: 40px; color: white;"></i>
-                    </a>
+                    <button class="play-button" id="last">
+                        <i class="fa fa-step-backward fa-2x"></i>
+                    </button>
+                    <button class="play-button" id="play">
+                        <i class="fa fa-play-circle-o fa-3x" id="pauseAndPlay"></i>
+                    </button>
+                    <button class="play-button" id="next">
+                        <i class="fa fa-step-forward fa-2x"></i>
+                    </button>
+                    <button class="play-button" id="stop">
+                        <i class="fa fa-stop"></i>
+                    </button>
                 </div>
+                <div class="play-bar">
+                    <p id="elapsed-time" class="bold-sub"> 0:00</p>
+                    <progress id='bar' class="progress is-small is-primary" value="0" max="100"></progress>
+                    <p id="total-time" class="bold-sub"> 5:00</p>
+                </div>
+
             </div>
-        </div>
-        <div id="centerArea" class="tile">
-            <div class="tile is-2 is-vertical" id="side-bar">
-                <!-- Side bar -->
-                <a class="bold-left">
-                    <i class=" fa fa-home" style="padding-right: 10px; padding-left: 15px; padding-top: 15px;"></i>
-                    Home
-                </a>
-                <a class="bold-left">
-                    <i class="fa fa-leaf" style="padding-right: 10px; padding-left: 15px; padding-top: 15px;"></i>
-                    Genres
-                </a>
-                <a class="bold-left" href="signup.html">
-                    <i class="fa fa-male" style="padding-right: 20px; padding-left: 15px; padding-top: 15px;"></i>
-                    Account
-                </a>
-                <a class="bold-left" style="background-color: gold; width: 50%; color: black;">
-                    <i class="fa fa-heart" style="padding-right: 10px; padding-left: 15px; "></i>
-                    Premium
-                </a>
-              </div>
-            <div class="tile is-4 is-vertical">
-                <div class="tile is-parent is-vertical" >
-                    <p class="bold-title" id="recommended-title"> Recommended section</p>
-                    <div class="tile is-parent">
-                        <div class="tile is-3 is-vertical">
-                            <div class="tile is-child box" id="rec1" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img style="width:100px;height:100px;" class="images">
-                                <i class="fa fa-play-circle fa-2x"></i>
-                                <p id="song" class="bold-sub"></p>
-                                <p id="artist" class="bold"></p>
-                                <p hidden id="srcPath" ></p>
-                                <p hidden id="duration" ></p>
-                            </div>
-                        </div>
-                        <div class="tile is-3 is-vertical">
-                            <div class="tile is-child box" id="rec2" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img style="width:100px;height:100px;" class="images">
-                                <i class="fa fa-play-circle fa-2x"></i>
-                                <p id="song" class="bold-sub"></p>
-                                <p id="artist" class="bold"></p>
-                                <p hidden id="srcPath" ></p>
-                                <p hidden id="duration" ></p>
-                            </div>
-                        </div>
-                        <div class="tile is-3 is-vertical">
-                            <div class="tile is-child box" id="rec3" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img style="width:100px;height:100px;" class="images">
-                                <i class="fa fa-play-circle fa-2x"></i>
-                                <p id="song" class="bold-sub"></p>
-                                <p id="artist" class="bold"></p>
-                                <p hidden id="srcPath" ></p>
-                                <p hidden id="duration" ></p>
-                            </div>
-                        </div>
-                        <div class="tile is-3 is-vertical">
-                            <div class="tile is-child box" id="rec4" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img style="width:100px;height:100px;" class="images">
-                                <i class="fa fa-play-circle fa-2x"></i>
-                                <p id="song" class="bold-sub"></p>
-                                <p id="artist" class="bold"></p>
-                                <p hidden id="srcPath" ></p>
-                                <p hidden id="duration" ></p>
-                            </div>
-                        </div> 
-                    </div>
-                    <!-- Top tile -->
-                </div>
-                <div class="tile is-parent is-vertical" >
-                  <!-- Bottom tile -->
-                    <p class="bold-title" id="side-bar-title"> New Section</p>
-                    <div class="tile is-parent">
-                        <div class="tile is-3 is-vertical">
-                            <div class="tile is-child box" id="new1" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img style="width:100px;height:100px;" class="images">
-                                <i class="fa fa-play-circle fa-2x"></i>
-                                <p id="song" class="bold-sub"></p>
-                                <p id="artist" class="bold"></p>
-                                <p hidden id="srcPath" ></p>
-                                <p hidden id="duration" ></p>
-                            </div>
-                        </div>
-                        <div class="tile is-3 is-vertical">
-                            <div class="tile is-child box" id="new2" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img style="width:100px;height:100px;" class="images">
-                                <i class="fa fa-play-circle fa-2x"></i>
-                                <p id="song" class="bold-sub"></p>
-                                <p id="artist" class="bold"></p>
-                                <p hidden id="srcPath" ></p>
-                                <p hidden id="duration" ></p>
-                            </div>
-                        </div>
-                        <div class="tile is-3 is-vertical">
-                            <div class="tile is-child box" id="new3" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img style="width:100px;height:100px;" class="images">
-                                <i class="fa fa-play-circle fa-2x"></i>
-                                <p id="song" class="bold-sub"></p>
-                                <p id="artist" class="bold"></p>
-                                <p hidden id="srcPath" ></p>
-                                <p hidden id="duration" ></p>
-                            </div>
-                        </div>
-                        <div class="tile is-3 is-vertical">
-                            <div class="tile is-child box" id="new4" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                <img style="width:100px;height:100px;" class="images">
-                                <i class="fa fa-play-circle fa-2x"></i>
-                                <p id="song" class="bold-sub"></p>
-                                <p id="artist" class="bold"></p>
-                                <p hidden id="srcPath" ></p>
-                                <p hidden id="duration" ></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="play-right">
+                <i class="fa fa-volume-up fa-2x" id="volume" style="color: white;"></i>
             </div>
-                <div class="tile is-4 is-vertical">
-                    <div class="tile is-parent is-vertical" >
-                        <p class="bold-title" id="recommended-title">Favourites</p>
-                        <div class="tile is-parent">
-                            <div class="tile is-3 is-vertical">
-                                <div class="tile is-child box" id="fav1" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img src="" style="width:100px;height:100px;" class="images">
-                                    <i class="fa fa-play-circle fa-2x"></i>
-                                    <p id="song" class="bold-sub"></p>
-                                    <p id="artist" class="bold"></p>
-                                    <p hidden id="srcPath" ></p>
-                                    <p hidden id="duration" ></p>
-                                </div>
-                            </div>
-                            <div class="tile is-3 is-vertical">
-                                <div class="tile is-child box" id="fav2" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img src="" style="width:100px;height:100px;" class="images">
-                                    <i class="fa fa-play-circle fa-2x"></i>
-                                    <p id="song" class="bold-sub"></p>
-                                    <p id="artist" class="bold"></p>
-                                    <p hidden id="srcPath" ></p>
-                                    <p hidden id="duration" ></p>
-                                </div>
-                            </div>
-                            <div class="tile is-3 is-vertical">
-                                <div class="tile is-child box" id="fav3" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img src="" style="width:100px;height:100px;" class="images">
-                                    <i class="fa fa-play-circle fa-2x"></i>
-                                    <p id="song" class="bold-sub"></p>
-                                    <p id="artist" class="bold"></p>
-                                    <p hidden id="srcPath" ></p>
-                                    <p hidden id="duration" ></p>
-                                </div>
-                            </div>
-                            <div class="tile is-3 is-vertical">
-                                <div class="tile is-child box" id="fav4" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img src="" style="width:100px;height:100px;" class="images">
-                                    <i class="fa fa-play-circle fa-2x"></i>
-                                    <p id="song" class="bold-sub"></p>
-                                    <p id="artist" class="bold"></p>
-                                    <p hidden id="srcPath" ></p>
-                                    <p hidden id="duration" ></p>
-                                </div>
-                            </div> 
-                        </div>
-                    <!-- Top tile -->
-                    </div>
-                    <div class="tile is-parent is-vertical">
-                        <!-- Bottom tile -->
-                        <p class="bold-title" id="side-bar-title">Hot Section</p>
-                        <div class="tile is-parent">
-                            <div class="tile is-3 is-vertical">
-                                <div class="tile is-child box" id="hot1" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img style="width:100px;height:100px;" class="images">
-                                    <i class="fa fa-play-circle fa-2x"></i>
-                                    <p id="song" class="bold-sub"></p>
-                                    <p id="artist" class="bold"></p>
-                                    <p hidden id="srcPath" ></p>
-                                    <p hidden id="duration" ></p>
-                                </div>
-                            </div>
-                            <div class="tile is-3 is-vertical">
-                                <div class="tile is-child box" id="hot2" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                                    <img style="width:100px;height:100px;" class="images">
-                                    <i class="fa fa-play-circle fa-2x"></i>
-                                    <p id="song" class="bold-sub"></p>
-                                    <p id="artist" class="bold"></p>
-                                    <p hidden id="srcPath" ></p>
-                                    <p hidden id="duration" ></p>
-                                </div>
-                            </div>
-                            <div class="tile is-3 is-vertical">
-                                <div class="tile is-child box" id="hot3" style="background-color:rgb(26, 21, 29);  border: 1px solid  rgb(26, 21, 29);">
-                                    <img style="width:100px;height:100px;" class="images">
-                                    <i class="fa fa-play-circle fa-2x"></i>
-                                    <p id="song" class="bold-sub"></p>
-                                    <p id="artist" class="bold"></p>
-                                    <p hidden id="srcPath" ></p>
-                                    <p hidden id="duration" ></p>
-                                </div>
-                            </div>
-                            <div class="tile is-3 is-vertical">
-                                <div class="tile is-child box" id="hot4" style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29) ;">
-                                    <img style="width:100px;height:100px;" class="images">
-                                    <i class="fa fa-play-circle fa-2x"></i>
-                                    <p id="song" class="bold-sub"></p>
-                                    <p id="artist" class="bold"></p>
-                                    <p hidden id="srcPath" ></p>
-                                    <p hidden id="duration" ></p>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    </div>
-                </div>
-                <div class="tile is-vertical" id="about-bar">
-                    <div class="tile is-vertical" >
-                        <p class="title has-text-white-ter" id="artist-name">Artist</p>
-                        <p class="subtitle has-text-white-ter" id="song-name">Song</p>
-                        <img id="info-bar-image" src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" style="width:300px;height:300px;">
-                    </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div id="MusicPlayFooter">
-            <footer class="Mfooter">
-                <div class="play-left">
-                    <img src="images/albums/Lewis_Capaldi_-_Divinely_Uninspired_to_a_Hellish_Extent.png" id="playing-song" style="width:50px;height:50px;">
-                    <p id="footer-song-name" class="bold-sub">Someone You Loved</p>
-                    <p id="footer-artist-name" class="bold">Lewis Capaldi</p>
-                </div>
-                <div class="play-center">
-                    <p id="play-bar-song-name" class="bold-sub">Someone You Loved</p>
-                    <div class="button-bar">
-                        <button class="play-button" id="favourite" style="width: 30px;">
-                            <i class="fa fa-star-o" style="font-size:18px" id="star"></i>
-                        </button>
-                        <button class="play-button" id="last">
-                            <i class="fa fa-step-backward fa-2x"></i>
-                        </button>
-                        <button class="play-button" id="play">
-                            <i class="fa fa-play-circle-o fa-3x" id="pauseAndPlay"></i>
-                        </button>
-                        <button class="play-button" id="next">
-                            <i class="fa fa-step-forward fa-2x"></i>
-                        </button>
-                        <button class="play-button" id="stop">
-                            <i class="fa fa-stop"></i>
-                        </button>
-                    </div>
-                    <div class="play-bar">
-                        <p id="elapsed-time" class="bold-sub"> 0:00</p>
-                        <progress id='bar'class="progress is-small is-primary" value="0" max="100"></progress>
-                        <p id="total-time" class="bold-sub"> 5:00</p>
-                    </div>
-                    
-                </div>
-                <div class="play-right">
-                    <i class="fa fa-volume-up fa-2x" id="volume" style="color: white;"></i>
+        </footer>
+
+    </div>
+    <div class="modal" id="premiumModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Go Premium</p>
+                <button class="delete" aria-label="close" onclick="$('#premiumModal').hide()"></button>
+            </header>
+            <section class="modal-card-body">
+                <p>Tired of only having a limited selection of songs? Go Premium now and get access to everything!</p>
+            </section>
+            <footer class="modal-card-foot">
+                <div id="premiumButtons">
+                    <div id="paypalButton"></div>
+                    <button type="button" onclick="$('#premiumModal').hide()">Cancel</button>
                 </div>
             </footer>
-
         </div>
-        <div class="modal" id="premiumModal">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Go Premium</p>
-                    <button class="delete" aria-label="close" onclick="$('#premiumModal').hide()"></button>
-                </header>
-                <section class="modal-card-body">
-                    <p>Tired of only having a limited selection of songs? Go Premium now and get access to everything!</p>
-                </section>
-                <footer class="modal-card-foot">
-                    <div id="premiumButtons">
-                        <div id="paypalButton"></div>
-                        <button type="button" onclick="$('#premiumModal').hide()">Cancel</button>
-                        
-                    </div>
-                </footer>
-            </div>
-    </body>
-    <script>
-        paypal.Buttons({
-            style: {
-                layout: 'horizontal'
-            },
-            createOrder: function (data, actions) {
-                // This function sets up the details of the transaction, including the amount and line item details.
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '5.99'
-                        }
-                    }]
-                });
-            },
-            onApprove: function (data, actions) {
-                // This function captures the funds from the transaction.
-                return actions.order.capture().then(function (details) {
-                    // This function shows a transaction success message to your buyer.
-                    alert(details.payer.name.given_name + ', you have successfully purchased Premium!');
-                    $('#premiumModal').hide();
-                });
-            }
-        }).render('#paypalButton');
-    </script>
+</body>
+<script>
+    paypal.Buttons({
+        style: {
+            layout: 'horizontal'
+        },
+        createOrder: function (data, actions) {
+            // This function sets up the details of the transaction, including the amount and line item details.
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '5.99'
+                    }
+                }]
+            });
+        },
+        onApprove: function (data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function (details) {
+                // This function shows a transaction success message to your buyer.
+                alert(details.payer.name.given_name + ', you have successfully purchased Premium!');
+                $('#premiumModal').hide();
+            });
+        }
+    }).render('#paypalButton');
+</script>
+
 </html>
