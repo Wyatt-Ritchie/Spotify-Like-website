@@ -95,50 +95,52 @@ $(document).ready(function(){
         let imgSrc = $(this).children("img").attr('src');
         let artistName = $(this).children("#artist").text();
         let songName = $(this).children("#song").text();
-
-        $('#playing-song').attr('src', imgSrc);
-        document.getElementById('footer-artist-name').innerHTML = artistName;
-        document.getElementById('footer-song-name').innerHTML = songName;
-        document.getElementById('play-bar-song-name').innerHTML = songName;
-
-        
-        var player = document.getElementById('player')
-        player.src = $(this).children("#srcPath").text();
-
-        // Convert duration to minutes and seconds
-        let duration = $(this).children("#duration").text();
-        var minutes = Math.floor(duration / 60);
-        var seconds = duration - minutes * 60;
-
-        // Set total-time
-        if(seconds.toString().length == 1) {
-            $('#total-time').html(minutes + ":" + "0" + seconds);
-        } else {
-            $('#total-time').html(minutes + ":" + seconds);
+        if(imgSrc != ""){
+            $('#playing-song').attr('src', imgSrc);
+            document.getElementById('footer-artist-name').innerHTML = artistName;
+            document.getElementById('footer-song-name').innerHTML = songName;
+            document.getElementById('play-bar-song-name').innerHTML = songName;
+    
+            
+            var player = document.getElementById('player')
+            player.src = $(this).children("#srcPath").text();
+    
+            // Convert duration to minutes and seconds
+            let duration = $(this).children("#duration").text();
+            var minutes = Math.floor(duration / 60);
+            var seconds = duration - minutes * 60;
+    
+            // Set total-time
+            if(seconds.toString().length == 1) {
+                $('#total-time').html(minutes + ":" + "0" + seconds);
+            } else {
+                $('#total-time').html(minutes + ":" + seconds);
+            }
+    
+            // Reset the elapsed time
+            $('#elapsed-time').html("0:00");
+            elapsed_time = 0;
+            if(timer != null) {
+                clearInterval(timer);
+            }
+    
+            // Start the timer
+            timer = setInterval(incrementSeconds, 1000);
+    
+            // Set progress bar increment value and reset the progress bar
+            progBarIncrementVal = 100 / duration;
+            $('#bar').val(0);
+    
+            // Play the song and update the play button
+            
+            player.play();
+            play = false;
+            updatePlayButton();
+            play = true;
+    
+            chechSongAndUpdateStar();
         }
-
-        // Reset the elapsed time
-        $('#elapsed-time').html("0:00");
-        elapsed_time = 0;
-        if(timer != null) {
-            clearInterval(timer);
-        }
-
-        // Start the timer
-        timer = setInterval(incrementSeconds, 1000);
-
-        // Set progress bar increment value and reset the progress bar
-        progBarIncrementVal = 100 / duration;
-        $('#bar').val(0);
-
-        // Play the song and update the play button
         
-        player.play();
-        play = false;
-        updatePlayButton();
-        play = true;
-
-        chechSongAndUpdateStar();
     });
 
     function incrementSeconds() {
