@@ -173,6 +173,21 @@ function isLoggedIn(req, res) {
     }
 }
 
+function isPremium(req, res) {
+    let username = req.session.username;
+    User.find({username: username}).then(function(results) {
+
+        if(results[0].isPremium == true) {
+            res.send(200, {"result": true});
+        } else {
+            res.send(200, {"result": false});
+        }
+        
+    }).catch(function(error) {
+        console.log(error);
+    });
+}
+
 function logout(req, res) {
     req.session.username = '';
     res.send(200);
@@ -185,5 +200,6 @@ module.exports = {
     addOrRemoveSong,
     isSongLiked,
     isLoggedIn,
+    isPremium,
     logout
   }
