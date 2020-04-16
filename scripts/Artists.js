@@ -42,7 +42,7 @@ $(document).ready(function(){
                 }
             }
         }else{
-            alert("Please Sign In To Use This Feature");
+            $('#sign-in-alert').show()
         }
         
         console.log("Clicked");
@@ -132,14 +132,11 @@ $(document).ready(function(){
         $('#bar').val(0);
 
         // Play the song and update the play button
-        if(signedIn == true){
-            player.play();
-            play = false;
-            updatePlayButton();
-            play = true;
-        }else{
-            alert("Sign in to play this song");
-        }
+        
+        player.play();
+        play = false;
+        updatePlayButton();
+        play = true;
 
         chechSongAndUpdateStar();
     });
@@ -177,14 +174,18 @@ $(document).ready(function(){
     }
 
     function updateFavouriteButton(active){
-        if(active){
-            $('#star').removeClass('fa fa-star-o');
-            $('#star').addClass('fa fa-star');
-            favourite = true;
-        } else {
-            $('#star').removeClass('fa fa-star');
-            $('#star').addClass('fa fa-star-o');
-            favourite = false;
+        if(signedIn){
+            if(active){
+                $('#star').removeClass('fa fa-star-o');
+                $('#star').addClass('fa fa-star');
+                favourite = true;
+            } else {
+                $('#star').removeClass('fa fa-star');
+                $('#star').addClass('fa fa-star-o');
+                favourite = false;
+            }
+        }else{
+            $('#sign-in-alert').show()
         }
     }
 
@@ -350,6 +351,30 @@ $(document).ready(function(){
             }
         });
     }
+
+    paypal.Buttons({
+        style: {
+            layout: 'horizontal'
+        },
+        createOrder: function (data, actions) {
+            // This function sets up the details of the transaction, including the amount and line item details.
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '5.99'
+                    }
+                }]
+            });
+        },
+        onApprove: function (data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function (details) {
+                // This function shows a transaction success message to your buyer.
+                alert(details.payer.name.given_name + ', you have successfully purchased Premium!');
+                $('#premiumModal').hide();
+            });
+        }
+    }).render('#paypalButton');
 
     displayFeatured();
     displayNew();

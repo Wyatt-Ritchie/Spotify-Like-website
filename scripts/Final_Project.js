@@ -38,22 +38,22 @@ $(document).ready(function(){
     })
     $('#pauseAndPlay').click(function(){
         var player = document.getElementById('player')
-        if(signedIn == true){
-            if(play == false){
+        if(play == false){
+            if(!isPremium && elapsed_time == 10) {
+                alert("Basic plan limit is reached");
+            } else {
                 updatePlayButton();
                 play = true;
                 player.play();
                 timer = setInterval(incrementSeconds, 1000);
-            }else{
-                updatePlayButton();
-                play = false;
-                player.pause();
-                if(timer != null) {
-                    clearInterval(timer);
-                }
-            }
+            }   
         }else{
-            $('#sign-in-alert').show()
+            updatePlayButton();
+            play = false;
+            player.pause();
+            if(timer != null) {
+                clearInterval(timer);
+            }
         }
         
         console.log("Clicked");
@@ -142,30 +142,38 @@ $(document).ready(function(){
         $('#bar').val(0);
 
         // Play the song and update the play button
-        if(signedIn == true){
-            player.play();
-            play = false;
-            updatePlayButton();
-            play = true;
-        }else{
-            $('#sign-in-alert').show()
-        }
+        
+        player.play();
+        play = false;
+        updatePlayButton();
+        play = true;
+        
 
         chechSongAndUpdateStar();
     });
 
     function incrementSeconds() {
-        elapsed_time += 1;
-        var minutes = Math.floor(elapsed_time / 60);
-        var seconds = elapsed_time - minutes * 60;
-        if(seconds.toString().length == 1) {
-            $('#elapsed-time').html(minutes + ":" + "0" + seconds);
+        if(!isPremium && elapsed_time == 10) { // 10 seconds limit for basic users
+            updatePlayButton();
+            play = false;
+            player.pause();
+            if(timer != null) {
+                clearInterval(timer);
+            }
+            alert("Basic plan limit is reached");
         } else {
-            $('#elapsed-time').html(minutes + ":" + seconds);
+            elapsed_time += 1;
+            var minutes = Math.floor(elapsed_time / 60);
+            var seconds = elapsed_time - minutes * 60;
+            if(seconds.toString().length == 1) {
+                $('#elapsed-time').html(minutes + ":" + "0" + seconds);
+            } else {
+                $('#elapsed-time').html(minutes + ":" + seconds);
+            }
+            var curr_val = $('#bar').val();
+            var new_val = Number(curr_val) + progBarIncrementVal;
+            $('#bar').val(new_val);
         }
-        var curr_val = $('#bar').val();
-        var new_val = Number(curr_val) + progBarIncrementVal;
-        $('#bar').val(new_val);
     }
 
     function updateSignInButton(){
@@ -432,6 +440,7 @@ $(document).ready(function(){
                 if(json.result) {
                     // User is logged in
                     signedIn = true;
+                    checkIfPremium();
                 } else {
                     // User is not logged in
                     signedIn = false;
@@ -461,6 +470,34 @@ $(document).ready(function(){
             }
         });
     }
+    function checkIfPremium() {
+        $.ajax({
+            type: 'GET',
+            url: "http://localhost:3000/api/isPremium",
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(response) { 
+                //alert(JSON.stringify(response));
+                let res = JSON.stringify(response);
+                let json = JSON.parse(res);
+                if(json.result) {
+                    // User is premium
+                    isPremium = true;
+
+                    // Hide premium button in the side menu
+                    $('#premiumMenuButton').hide();
+                } else {
+                    // User is NOT premium
+                    isPremium = false;
+                }
+
+            },
+            error: function(xhr, status, err) {
+                alert("ERROR", err);
+            }
+        });
+    }
 
     $('#premium-link').click(function(){
         if(signedIn == true){
@@ -470,6 +507,29 @@ $(document).ready(function(){
         }
         
     })
+    paypal.Buttons({
+        style: {
+            layout: 'horizontal'
+        },
+        createOrder: function (data, actions) {
+            // This function sets up the details of the transaction, including the amount and line item details.
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '5.99'
+                    }
+                }]
+            });
+        },
+        onApprove: function (data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function (details) {
+                // This function shows a transaction success message to your buyer.
+                alert(details.payer.name.given_name + ', you have successfully purchased Premium!');
+                $('#premiumModal').hide();
+            });
+        }
+    }).render('#paypalButton');
 
     displayRecommended();
     displayNew();
