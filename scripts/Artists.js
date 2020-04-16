@@ -11,6 +11,7 @@ $(document).ready(function(){
     var timer = null;
     var progBarIncrementVal = 0.0;
 
+    
     $('#about-bar').hide();
     //$('#side-bar').hide();
     $('.fa-play-circle').hide();
@@ -26,19 +27,24 @@ $(document).ready(function(){
     })
     $('#pauseAndPlay').click(function(){
         var player = document.getElementById('player')
-        if(play == false){
-            updatePlayButton();
-            play = true;
-            player.play();
-            timer = setInterval(incrementSeconds, 1000);
-        }else{
-            updatePlayButton();
-            play = false;
-            player.pause();
-            if(timer != null) {
-                clearInterval(timer);
+        if(signedIn == true){
+            if(play == false){
+                updatePlayButton();
+                play = true;
+                player.play();
+                timer = setInterval(incrementSeconds, 1000);
+            }else{
+                updatePlayButton();
+                play = false;
+                player.pause();
+                if(timer != null) {
+                    clearInterval(timer);
+                }
             }
+        }else{
+            alert("Please Sign In To Use This Feature");
         }
+        
         console.log("Clicked");
     })
     $('#favourite').click(function(){
@@ -126,10 +132,14 @@ $(document).ready(function(){
         $('#bar').val(0);
 
         // Play the song and update the play button
-        player.play();
-        play = false;
-        updatePlayButton();
-        play = true;
+        if(signedIn == true){
+            player.play();
+            play = false;
+            updatePlayButton();
+            play = true;
+        }else{
+            alert("Sign in to play this song");
+        }
 
         chechSongAndUpdateStar();
     });
@@ -202,7 +212,7 @@ $(document).ready(function(){
             success: function(response) { 
                 let stringified = JSON.stringify(response)
                 let parsed = JSON.parse(stringified);
-                for(var i=1; i<6; i++){
+                for(var i=1; i<5; i++){
                     // the artist name
                     $('#feat' + i).children('#artist').html(parsed[i-1].artist.name);
                     // the song name

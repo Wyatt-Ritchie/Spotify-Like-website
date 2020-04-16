@@ -15,6 +15,10 @@ $(document).ready(function(){
     $('#side-bar').hide();
     $('.fa-play-circle').hide();
 
+    /*if(signedIn == false){
+        $('#centerArea').hide();
+    }*/
+
     $('#artist-link').click(function(){
         if(signedIn){
             $(this).attr('href', 'Artists.html')
@@ -34,19 +38,24 @@ $(document).ready(function(){
     })
     $('#pauseAndPlay').click(function(){
         var player = document.getElementById('player')
-        if(play == false){
-            updatePlayButton();
-            play = true;
-            player.play();
-            timer = setInterval(incrementSeconds, 1000);
-        }else{
-            updatePlayButton();
-            play = false;
-            player.pause();
-            if(timer != null) {
-                clearInterval(timer);
+        if(signedIn == true){
+            if(play == false){
+                updatePlayButton();
+                play = true;
+                player.play();
+                timer = setInterval(incrementSeconds, 1000);
+            }else{
+                updatePlayButton();
+                play = false;
+                player.pause();
+                if(timer != null) {
+                    clearInterval(timer);
+                }
             }
+        }else{
+            $('#sign-in-alert').show()
         }
+        
         console.log("Clicked");
     })
     $('#favourite').click(function(){
@@ -133,10 +142,14 @@ $(document).ready(function(){
         $('#bar').val(0);
 
         // Play the song and update the play button
-        player.play();
-        play = false;
-        updatePlayButton();
-        play = true;
+        if(signedIn == true){
+            player.play();
+            play = false;
+            updatePlayButton();
+            play = true;
+        }else{
+            $('#sign-in-alert').show()
+        }
 
         chechSongAndUpdateStar();
     });
@@ -174,14 +187,18 @@ $(document).ready(function(){
     }
 
     function updateFavouriteButton(active){
-        if(active){
-            $('#star').removeClass('fa fa-star-o');
-            $('#star').addClass('fa fa-star');
-            favourite = true;
-        } else {
-            $('#star').removeClass('fa fa-star');
-            $('#star').addClass('fa fa-star-o');
-            favourite = false;
+        if(signedIn){
+            if(active){
+                $('#star').removeClass('fa fa-star-o');
+                $('#star').addClass('fa fa-star');
+                favourite = true;
+            } else {
+                $('#star').removeClass('fa fa-star');
+                $('#star').addClass('fa fa-star-o');
+                favourite = false;
+            }
+        }else{
+            $('#sign-in-alert').show()
         }
     }
 
@@ -444,6 +461,15 @@ $(document).ready(function(){
             }
         });
     }
+
+    $('#premium-link').click(function(){
+        if(signedIn == true){
+            $('#premiumModal').show()
+        }else{
+            $('#sign-in-alert').show()
+        }
+        
+    })
 
     displayRecommended();
     displayNew();

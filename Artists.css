@@ -17,6 +17,14 @@ body {
     align-items: center;
 }
 
+#web-name{
+    font-family: copperplate-condensed, serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 35px;
+    color: white;
+}
+
 #top-bar{
     padding-top: 5px;
     padding-bottom: 5px;

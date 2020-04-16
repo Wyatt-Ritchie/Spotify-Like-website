@@ -5,7 +5,6 @@ html {
  }
  
  body {
-    margin: 0px;
     min-height: 100%;
     width: 100%;
     background-color: rgb(26, 21, 29);
@@ -20,8 +19,17 @@ html {
     padding-bottom: 5px;
 }
 
+#web-name{
+    font-family: copperplate-condensed, serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 35px;
+    color: white;
+}
+
 #centerArea {
     border-top:2px black solid;
+    margin-bottom: 140px;
 }
 
 #left-navigation{
@@ -75,6 +83,7 @@ html {
     display: flex;
     align-items: center;
     padding: 10px;
+    height:150px;
 }
 
 .button-bar{
@@ -88,11 +97,13 @@ html {
     color: white;
 }
 
-#premiumButtons{
+#premiumButtons, #sign-in-alert-Buttons{
     display: flex;
     justify-content: space-around;
     width: 100%;
 }
+
+
 
 .play-bar{
     display: flex;
