@@ -51,31 +51,41 @@ $(document).ready(function(){
                 
             }
         }else{
-            username = $('#username').val();
-            password = $('#password').val();
-            repeatPass = $('#repeat-pass').val();
-            var URL = "http://localhost:3000/api/processRegistration?username=" + username + "&password=" + password;
+            if(($('#username').val() == "") || ($('#password').val() == "") || ($('#repeatPass').val() == "")){
+                $('#sign-in-alert').show();
+                $('#username').addClass('is-danger');
+                $('#password').addClass('is-danger');
+                $('#repeatPass').addClass('is-danger');
+            }else{
+                $('#sign-in-alert').hide();
+                $('#username').removeClass('is-danger');
+                $('#password').removeClass('is-danger');
+                $('#repeatPass').removeClass('is-danger');
+                username = $('#username').val();
+                password = $('#password').val();
+                repeatPass = $('#repeat-pass').val();
+                var URL = "http://localhost:3000/api/processRegistration?username=" + username + "&password=" + password;
 
-            // Create a user with this information. Check to make sure the passwords match
-            // then send back to the homepage
-            $.ajax({
-                type: 'POST',
-                url: URL,
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: function(response) { 
-                    //alert(response);
-                    //alert("SUCCESS")
-                    //alert(JSON.stringify(response));
-                    window.location.replace("Final_Project.html")
-                },
-                error: function(xhr, status, err) {
-                    alert(err, "ERROR");
-                }
-            });
+                // Create a user with this information. Check to make sure the passwords match
+                // then send back to the homepage
+                $.ajax({
+                    type: 'POST',
+                    url: URL,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function(response) { 
+                        //alert(response);
+                        //alert("SUCCESS")
+                        //alert(JSON.stringify(response));
+                        window.location.replace("Final_Project.html")
+                    },
+                    error: function(xhr, status, err) {
+                        alert(err, "ERROR");
+                    }
+                });
             
-            
+            }
         }
         
         

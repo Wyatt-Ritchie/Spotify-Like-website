@@ -1,10 +1,10 @@
+
 #input-section{
     width: 40%;
     margin-left: 30%;
     margin-right: 30%;
     margin-top: 3%;
 }
-
 #form-end{
     display: flex;
     padding-top: 5px;
@@ -23,4 +23,10 @@
 
 #has-account{
     font-size: 13px;
+}
+
+
+
+#join{
+    margin-top: 15px;
 }

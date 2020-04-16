@@ -12,16 +12,8 @@ $(document).ready(function(){
     var progBarIncrementVal = 0.0;
 
     $('#about-bar').hide();
-    $('#side-bar').hide();
+    //$('#side-bar').hide();
     $('.fa-play-circle').hide();
-
-    $('#artist-link').click(function(){
-        if(signedIn){
-            $(this).attr('href', 'Artists.html')
-        }else{
-            $(this).attr('href', 'signup.html')
-        }
-    })
 
     $('#sign-in-button').click(function(){
         if(signedIn == false){
@@ -65,6 +57,7 @@ $(document).ready(function(){
             leftHidden = false;
         }
     })
+
 
     $('.images').parent().hover(function(){
         let artistName = $(this).children("#artist").text();
@@ -190,7 +183,7 @@ $(document).ready(function(){
             $('#volume').removeClass('fa fa-volume-up fa-2x');
             $('#volume').addClass('fa fa-volume-off fa-2x');
             mute = true;
-            player.muted = true;
+            player.muted= true;
         }else{
             $('#volume').removeClass('fa fa-volume-off fa-2x');
             $('#volume').addClass('fa fa-volume-up fa-2x');
@@ -199,7 +192,7 @@ $(document).ready(function(){
         }
     }
 
-    function displayRecommended(recList){
+    function displayFeatured(){
         // Displays the recommended songs (random)
         // requires a list of songs of length 4
         // loops through the list adding each song to the div
@@ -209,48 +202,17 @@ $(document).ready(function(){
             success: function(response) { 
                 let stringified = JSON.stringify(response)
                 let parsed = JSON.parse(stringified);
-                for(var i=1; i<5; i++){
+                for(var i=1; i<6; i++){
                     // the artist name
-                    $('#rec' + i).children('#artist').html(parsed[i-1].artist.name);
+                    $('#feat' + i).children('#artist').html(parsed[i-1].artist.name);
                     // the song name
-                    $('#rec' + i).children('#song').html(parsed[i-1].name);
+                    $('#feat' + i).children('#song').html(parsed[i-1].name);
                     // the album cover art
-                    $('#rec' + i).children('img').attr('src', parsed[i-1].image);
+                    $('#feat' + i).children('img').attr('src', parsed[i-1].image);
                     // source path
-                    $('#rec' + i).children('#srcPath').html(parsed[i-1].src);
+                    $('#feat' + i).children('#srcPath').html(parsed[i-1].src);
                     // duration
-                    $('#rec' + i).children('#duration').html(parsed[i-1].duration);
-                }
-            },
-            error: function(xhr, status, err) {
-                alert("ERROR", err);
-            }
-        });
-        
-    }
-
-    function displayNew(newList){
-        // Displays some songs that are new to the platform
-        // requires a list of songs of length 4
-        // loops through the list adding each song to the div
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:3000/api/newSongs',
-            success: function(response) { 
-                let stringified = JSON.stringify(response)
-                let parsed = JSON.parse(stringified);
-                for(var i=1; i<5; i++){
-                    // the artist name
-                    $('#new' + i).children('#artist').html(parsed[i-1].artist.name);
-                    // the song name
-                    $('#new' + i).children('#song').html(parsed[i-1].name);
-                    // the album cover art
-                    $('#new' + i).children('img').attr('src', parsed[i-1].image);
-                    // source path
-                    $('#new' + i).children('#srcPath').html(parsed[i-1].src);
-                    // duration
-                    $('#new' + i).children('#duration').html(parsed[i-1].duration);
-
+                    $('#feat' + i).children('#duration').html(parsed[i-1].duration);
                     // Default selected song on page refresh
                     if(i == 1) {
                         $('#playing-song').attr('src', parsed[0].image);
@@ -282,74 +244,8 @@ $(document).ready(function(){
                 alert("ERROR", err);
             }
         });
-    }
-    
-
-    function displayFavourite(favList){
-        // Displays the most played songs by the user in the favourite section
-        // requires a list of songs of length 4
-        // loops through the list adding each song to the div
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:3000/api/favouriteSongs',
-            xhrFields: {
-                withCredentials: true
-            },
-            success: function(response) { 
-                let stringified = JSON.stringify(response)
-                let parsed = JSON.parse(stringified);
-                for(var i=1; i<5; i++){
-                    if(parsed[i-1]) {
-                        // the artist name
-                        $('#fav' + i).children('#artist').html(parsed[i-1].artist.name);
-                        // the song name
-                        $('#fav' + i).children('#song').html(parsed[i-1].name);
-                        // the album cover art
-                        $('#fav' + i).children('img').attr('src', parsed[i-1].image);
-                        // source path
-                        $('#fav' + i).children('#srcPath').html(parsed[i-1].src);
-                        // duration
-                        $('#fav' + i).children('#duration').html(parsed[i-1].duration);
-                    }
-                    
-                }
-            },
-            error: function(xhr, status, err) {
-                alert("ERROR", err);
-            }
-        });
         
     }
-
-    function displayHot(hotList){
-        // Displays what songs are hot right now
-        // requires a list of songs of length 4
-        // loops through the list adding each song to the div
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:3000/api/topSongs',
-            success: function(response) { 
-                let stringified = JSON.stringify(response)
-                let parsed = JSON.parse(stringified);
-                for(var i=1; i<5; i++){
-                    // the artist name
-                    $('#hot' + i).children('#artist').html(parsed[i-1].artist.name);
-                    // the song name
-                    $('#hot' + i).children('#song').html(parsed[i-1].name);
-                    // the album cover art
-                    $('#hot' + i).children('img').attr('src', parsed[i-1].image);
-                    // source path
-                    $('#hot' + i).children('#srcPath').html(parsed[i-1].src);
-                    // duration
-                    $('#hot' + i).children('#duration').html(parsed[i-1].duration);
-                }
-            },
-            error: function(xhr, status, err) {
-                alert("ERROR", err);
-            }
-        });
-    }
-
     // Checks current selected song whether it's liked by user and updates it
     function chechSongAndUpdateStar() {
         let songname = document.getElementById('footer-song-name').innerHTML;
@@ -445,8 +341,6 @@ $(document).ready(function(){
         });
     }
 
-    displayRecommended();
+    displayFeatured();
     displayNew();
-    displayFavourite();
-    displayHot();
 });

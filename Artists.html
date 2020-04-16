@@ -2,11 +2,11 @@
 <html>
 <header>
     <title>Final Project</title>
-    <link rel="stylesheet" href="Final_Project.css" />
+    <link rel="stylesheet" href="Artists.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="scripts/Final_Project.js"></script>
+    <script type="text/javascript" src="scripts/Artists.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </header>
@@ -45,7 +45,7 @@
                 <i class=" fa fa-home" style="padding-right: 10px; padding-left: 15px; padding-top: 15px;"></i>
                 Home
             </a>
-            <a class="bold-left" id='artist-link' href="">
+            <a class="bold-left">
                 <i class="fa fa-leaf" style="padding-right: 10px; padding-left: 15px; padding-top: 15px;"></i>
                 Artists
             </a>
@@ -58,12 +58,12 @@
                 Premium
             </a>
         </div>
-        <div class="tile is-4 is-vertical">
+        <div class="tile is-8 is-vertical">
             <div class="tile is-parent is-vertical">
-                <p class="bold-title" id="recommended-title"> Recommended section</p>
+                <p class="bold-title" id="Featured-title"> Featured</p>
                 <div class="tile is-parent">
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="rec1"
+                    <div class="tile is-2 is-vertical">
+                        <div class="tile is-child box" id="feat1"
                             style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
                             <img style="width:100px;height:100px;" class="images">
                             <i class="fa fa-play-circle fa-2x"></i>
@@ -73,8 +73,8 @@
                             <p hidden id="duration"></p>
                         </div>
                     </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="rec2"
+                    <div class="tile is-2 is-vertical">
+                        <div class="tile is-child box" id="feat2"
                             style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
                             <img style="width:100px;height:100px;" class="images">
                             <i class="fa fa-play-circle fa-2x"></i>
@@ -84,8 +84,8 @@
                             <p hidden id="duration"></p>
                         </div>
                     </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="rec3"
+                    <div class="tile is-2 is-vertical">
+                        <div class="tile is-child box" id="feat3"
                             style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
                             <img style="width:100px;height:100px;" class="images">
                             <i class="fa fa-play-circle fa-2x"></i>
@@ -95,8 +95,8 @@
                             <p hidden id="duration"></p>
                         </div>
                     </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="rec4"
+                    <div class="tile is-2 is-vertical">
+                        <div class="tile is-child box" id="feat4"
                             style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
                             <img style="width:100px;height:100px;" class="images">
                             <i class="fa fa-play-circle fa-2x"></i>
@@ -106,48 +106,8 @@
                             <p hidden id="duration"></p>
                         </div>
                     </div>
-                </div>
-                <!-- Top tile -->
-            </div>
-            <div class="tile is-parent is-vertical">
-                <!-- Bottom tile -->
-                <p class="bold-title" id="new-section"> New Section</p>
-                <div class="tile is-parent">
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="new1"
-                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                            <img style="width:100px;height:100px;" class="images">
-                            <i class="fa fa-play-circle fa-2x"></i>
-                            <p id="song" class="bold-sub"></p>
-                            <p id="artist" class="bold"></p>
-                            <p hidden id="srcPath"></p>
-                            <p hidden id="duration"></p>
-                        </div>
-                    </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="new2"
-                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                            <img style="width:100px;height:100px;" class="images">
-                            <i class="fa fa-play-circle fa-2x"></i>
-                            <p id="song" class="bold-sub"></p>
-                            <p id="artist" class="bold"></p>
-                            <p hidden id="srcPath"></p>
-                            <p hidden id="duration"></p>
-                        </div>
-                    </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="new3"
-                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                            <img style="width:100px;height:100px;" class="images">
-                            <i class="fa fa-play-circle fa-2x"></i>
-                            <p id="song" class="bold-sub"></p>
-                            <p id="artist" class="bold"></p>
-                            <p hidden id="srcPath"></p>
-                            <p hidden id="duration"></p>
-                        </div>
-                    </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="new4"
+                    <div class="tile is-2 is-vertical">
+                        <div class="tile is-child box" id="feat5"
                             style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
                             <img style="width:100px;height:100px;" class="images">
                             <i class="fa fa-play-circle fa-2x"></i>
@@ -160,110 +120,8 @@
                 </div>
             </div>
         </div>
-        <div class="tile is-4 is-vertical">
-            <div class="tile is-parent is-vertical">
-                <p class="bold-title" id="recommended-title">Favourites</p>
-                <div class="tile is-parent">
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="fav1"
-                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                            <img src="" style="width:100px;height:100px;" class="images">
-                            <i class="fa fa-play-circle fa-2x"></i>
-                            <p id="song" class="bold-sub"></p>
-                            <p id="artist" class="bold"></p>
-                            <p hidden id="srcPath"></p>
-                            <p hidden id="duration"></p>
-                        </div>
-                    </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="fav2"
-                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                            <img src="" style="width:100px;height:100px;" class="images">
-                            <i class="fa fa-play-circle fa-2x"></i>
-                            <p id="song" class="bold-sub"></p>
-                            <p id="artist" class="bold"></p>
-                            <p hidden id="srcPath"></p>
-                            <p hidden id="duration"></p>
-                        </div>
-                    </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="fav3"
-                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                            <img src="" style="width:100px;height:100px;" class="images">
-                            <i class="fa fa-play-circle fa-2x"></i>
-                            <p id="song" class="bold-sub"></p>
-                            <p id="artist" class="bold"></p>
-                            <p hidden id="srcPath"></p>
-                            <p hidden id="duration"></p>
-                        </div>
-                    </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="fav4"
-                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                            <img src="" style="width:100px;height:100px;" class="images">
-                            <i class="fa fa-play-circle fa-2x"></i>
-                            <p id="song" class="bold-sub"></p>
-                            <p id="artist" class="bold"></p>
-                            <p hidden id="srcPath"></p>
-                            <p hidden id="duration"></p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Top tile -->
-            </div>
-            <div class="tile is-parent is-vertical">
-                <!-- Bottom tile -->
-                <p class="bold-title" id="side-bar-title">Hot Section</p>
-                <div class="tile is-parent">
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="hot1"
-                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                            <img style="width:100px;height:100px;" class="images">
-                            <i class="fa fa-play-circle fa-2x"></i>
-                            <p id="song" class="bold-sub"></p>
-                            <p id="artist" class="bold"></p>
-                            <p hidden id="srcPath"></p>
-                            <p hidden id="duration"></p>
-                        </div>
-                    </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="hot2"
-                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29);">
-                            <img style="width:100px;height:100px;" class="images">
-                            <i class="fa fa-play-circle fa-2x"></i>
-                            <p id="song" class="bold-sub"></p>
-                            <p id="artist" class="bold"></p>
-                            <p hidden id="srcPath"></p>
-                            <p hidden id="duration"></p>
-                        </div>
-                    </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="hot3"
-                            style="background-color:rgb(26, 21, 29);  border: 1px solid  rgb(26, 21, 29);">
-                            <img style="width:100px;height:100px;" class="images">
-                            <i class="fa fa-play-circle fa-2x"></i>
-                            <p id="song" class="bold-sub"></p>
-                            <p id="artist" class="bold"></p>
-                            <p hidden id="srcPath"></p>
-                            <p hidden id="duration"></p>
-                        </div>
-                    </div>
-                    <div class="tile is-3 is-vertical">
-                        <div class="tile is-child box" id="hot4"
-                            style="background-color:rgb(26, 21, 29); border: 1px solid  rgb(26, 21, 29) ;">
-                            <img style="width:100px;height:100px;" class="images">
-                            <i class="fa fa-play-circle fa-2x"></i>
-                            <p id="song" class="bold-sub"></p>
-                            <p id="artist" class="bold"></p>
-                            <p hidden id="srcPath"></p>
-                            <p hidden id="duration"></p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="tile is-vertical" id="about-bar">
+        
+        <div class="tile is-vertical is-3" id="about-bar">
             <div class="tile is-vertical">
                 <p class="title has-text-white-ter" id="artist-name">Artist</p>
                 <p class="subtitle has-text-white-ter" id="song-name">Song</p>
