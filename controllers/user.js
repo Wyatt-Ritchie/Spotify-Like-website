@@ -4,16 +4,14 @@ let bcrypt = require('bcrypt-nodejs');
 let session = require('express-session');
 var express = require('express');
 
-function processLogin(req, res){
+function processLogin(req, res, next){
     let username = req.query.username;
     let password = req.query.password;
     console.log(username);
     console.log(password);
     User.find({username: username}).then(function(results) {
         if (results.length != 1) {
-           console.log('login: no user found');
-
-           res.send(false);
+           res.status(400).send({ error: "Username or password is incorrect" });
            // error logging in - no such user
         } else {
            // user was found, now check the password
@@ -27,8 +25,7 @@ function processLogin(req, res){
 
               res.send(req.session);
            } else {
-              console.log('login: password is not a match');
-             throw new Error("test"); 
+              res.status(400).send({ error: "Username or password is incorrect" });
               // error logging in - invalid password
            }
         }

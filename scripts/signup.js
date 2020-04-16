@@ -44,7 +44,7 @@ $(document).ready(function () {
                         window.location.replace("Final_Project.html")
                     },
                     error: function (xhr, status, err) {
-                        alert(err, "ERROR");
+                        alert(xhr.responseJSON.error);
                     }
                 });
 
