@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
     let hasAccount = true;
     let username = "";
     let password = "";
@@ -6,29 +6,29 @@ $(document).ready(function(){
     $('#sign-up-section').slideUp();
     $('#sign-in-alert').hide();
 
-    $('#has-account').click(function(){
-        if(hasAccount == true){
+    $('#has-account').click(function () {
+        if (hasAccount == true) {
             hasAccount = false;
             hideSignUp();
-        }else{
+        } else {
             hasAccount = true;
             hideSignUp();
         }
     })
 
-    $('#sign-in-button').click(function(){
-        if(hasAccount == true){
-            if(($('#username').val() == "") || ($('#password').val() == "")){
+    $('#sign-in-button').click(function () {
+        if (hasAccount == true) {
+            if (($('#username').val() == "") || ($('#password').val() == "")) {
                 $('#sign-in-alert').show();
                 $('#username').addClass('is-danger');
                 $('#password').addClass('is-danger');
-            }else{
+            } else {
                 $('#sign-in-alert').hide();
                 $('#username').removeClass('is-danger');
                 $('#password').removeClass('is-danger');
                 username = $('#username').val();
-                password= $('#password').val();
-                
+                password = $('#password').val();
+
                 var URL = "http://localhost:3000/api/login?username=" + username + "&password=" + password;
 
                 // Now check to see if the username and password match someone in the db.
@@ -40,27 +40,34 @@ $(document).ready(function(){
                     xhrFields: {
                         withCredentials: true
                     },
-                    success: function(response) { 
+                    success: function (response) {
                         window.location.replace("Final_Project.html")
                     },
-                    error: function(xhr, status, err) {
+                    error: function (xhr, status, err) {
                         alert(err, "ERROR");
                     }
                 });
 
-                
+
             }
-        }else{
-            if(($('#username').val() == "") || ($('#password').val() == "") || ($('#repeatPass').val() == "")){
+        } else {
+            if ($("#repeat-pass").val() != $("#password").val()) {
+                $('#sign-in-alert').text("Both passwords must be identical.");
+                $('#sign-in-alert').show();
+                $('#repeat-pass').addClass('is-danger');
+            }
+            else if (($('#username').val() == "") || ($('#password').val() == "") || ($('#repeatPass').val() == "")) {
+                $('#sign-in-alert').text("Fields must not be empty.");
                 $('#sign-in-alert').show();
                 $('#username').addClass('is-danger');
                 $('#password').addClass('is-danger');
-                $('#repeatPass').addClass('is-danger');
-            }else{
+                $('#repeat-pass').addClass('is-danger');
+            }
+            else {
                 $('#sign-in-alert').hide();
                 $('#username').removeClass('is-danger');
                 $('#password').removeClass('is-danger');
-                $('#repeatPass').removeClass('is-danger');
+                $('#repeat-pass').removeClass('is-danger');
                 username = $('#username').val();
                 password = $('#password').val();
                 repeatPass = $('#repeat-pass').val();
@@ -74,32 +81,34 @@ $(document).ready(function(){
                     xhrFields: {
                         withCredentials: true
                     },
-                    success: function(response) { 
+                    success: function (response) {
                         //alert(response);
                         //alert("SUCCESS")
                         //alert(JSON.stringify(response));
                         window.location.replace("Final_Project.html")
                     },
-                    error: function(xhr, status, err) {
+                    error: function (xhr, status, err) {
                         alert(err, "ERROR");
                     }
                 });
-            
+
             }
         }
-        
-        
-        
+
+
+
     })
 
-    function hideSignUp(){
-        if(hasAccount==false){
+    function hideSignUp() {
+        if (hasAccount == false) {
             $('#sign-up-section').slideDown();
             $('#sign-in-title').text('Sign Up');
+            $('#sign-in-text').text('Sign Up');
             $('#has-account').text("Already have an account?");
-        }else{
+        } else {
             $('#sign-up-section').slideUp();
             $('#sign-in-title').text('Sign In');
+            $('#sign-in-text').text('Sign In');
             $('#has-account').text("Don't have an account?");
         }
     }

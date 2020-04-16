@@ -12,6 +12,8 @@ function processLogin(req, res){
     User.find({username: username}).then(function(results) {
         if (results.length != 1) {
            console.log('login: no user found');
+
+           res.send(false);
            // error logging in - no such user
         } else {
            // user was found, now check the password
@@ -26,6 +28,7 @@ function processLogin(req, res){
               res.send(req.session);
            } else {
               console.log('login: password is not a match');
+             throw new Error("test"); 
               // error logging in - invalid password
            }
         }
