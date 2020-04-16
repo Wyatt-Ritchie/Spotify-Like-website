@@ -138,12 +138,15 @@ $(document).ready(function(){
             updatePlayButton();
             play = true;
     
-            chechSongAndUpdateStar();
+            if(signedIn) {
+                chechSongAndUpdateStar();
+            }
         }
         
     });
 
     function incrementSeconds() {
+        
         elapsed_time += 1;
         var minutes = Math.floor(elapsed_time / 60);
         var seconds = elapsed_time - minutes * 60;
@@ -155,6 +158,7 @@ $(document).ready(function(){
         var curr_val = $('#bar').val();
         var new_val = Number(curr_val) + progBarIncrementVal;
         $('#bar').val(new_val);
+        
     }
 
     function updateSignInButton(){
@@ -248,7 +252,9 @@ $(document).ready(function(){
 
                         progBarIncrementVal = 100 / parsed[0].duration;
 
-                        chechSongAndUpdateStar();
+                        if(signedIn) {
+                            chechSongAndUpdateStar();
+                        }
                         
                     }
                 }
@@ -353,30 +359,6 @@ $(document).ready(function(){
             }
         });
     }
-
-    paypal.Buttons({
-        style: {
-            layout: 'horizontal'
-        },
-        createOrder: function (data, actions) {
-            // This function sets up the details of the transaction, including the amount and line item details.
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '5.99'
-                    }
-                }]
-            });
-        },
-        onApprove: function (data, actions) {
-            // This function captures the funds from the transaction.
-            return actions.order.capture().then(function (details) {
-                // This function shows a transaction success message to your buyer.
-                alert(details.payer.name.given_name + ', you have successfully purchased Premium!');
-                $('#premiumModal').hide();
-            });
-        }
-    }).render('#paypalButton');
 
     displayFeatured();
     displayNew();

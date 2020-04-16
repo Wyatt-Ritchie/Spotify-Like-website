@@ -1,6 +1,7 @@
 $(document).ready(function(){
     
     let signedIn = false;
+    var isPremium = false;
     let play = false;
     let favourite = false;
     let mute = false;
@@ -146,7 +147,9 @@ $(document).ready(function(){
             updatePlayButton();
             play = true;
 
-            chechSongAndUpdateStar();
+            if(signedIn) {
+                chechSongAndUpdateStar();
+            }
         }
     });
 
@@ -296,7 +299,9 @@ $(document).ready(function(){
 
                         progBarIncrementVal = 100 / parsed[0].duration;
 
-                        chechSongAndUpdateStar();
+                        if(signedIn) {
+                            chechSongAndUpdateStar();
+                        }
                         
                     }
                 }
@@ -484,7 +489,7 @@ $(document).ready(function(){
                     isPremium = true;
 
                     // Hide premium button in the side menu
-                    $('#premiumMenuButton').hide();
+                    $('#premium-link').hide();
                 } else {
                     // User is NOT premium
                     isPremium = false;
@@ -523,8 +528,22 @@ $(document).ready(function(){
             // This function captures the funds from the transaction.
             return actions.order.capture().then(function (details) {
                 // This function shows a transaction success message to your buyer.
+                $('#premium-link').hide();
+                isPremium = true;
                 alert(details.payer.name.given_name + ', you have successfully purchased Premium!');
                 $('#premiumModal').hide();
+                $.ajax({
+                    type: 'POST',
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    url: 'http://localhost:3000/api/upgradeToPremium',
+                    success: function(response) { 
+                    },
+                    error: function(xhr, status, err) {
+                        alert(err, "ERROR");
+                    }
+                })
             });
         }
     }).render('#paypalButton');
