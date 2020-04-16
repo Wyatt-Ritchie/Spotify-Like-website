@@ -550,6 +550,8 @@ $(document).ready(function(){
 
     displayRecommended();
     displayNew();
-    displayFavourite();
+    if(signedIn) {
+        displayFavourite();
+    }
     displayHot();
 });
